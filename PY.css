@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    background-color: rgba(48, 149, 156, 0.863);
+}
+
+main {
+    background-color: rgb(81, 187, 178);
+    text-align: center;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 40px;
+    color: rgb(255, 0, 0);
+    background-position: center;
+    position: center;
+    animation: bouncing 0.5s ease 0s infinite alternate both;
+    background: rgb(4, 0, 218);
+    background-position: center;
+    position: center;
+    text-align: center;
+    border-radius: 50%;
+    border-color: rgb(255, 238, 0);
+    display: inline-block;
+    color: rgb(72, 255, 0);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    padding: 1em 2em 1.1em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: top;
+    margin-top: 100px;
+    color: red;
+    border-style: solid;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    font-stretch: ultra-expanded;
+    font-language-override: inherit;
+    text-decoration: underline;
+    text-shadow: 3px 5px 5px rgb(218, 0, 152);
+    font-family: Georgia, Times, serif;
+    font-size: 350%;
+    text-shadow: 2px 2px 3px #ff009d;
+    padding-bottom: 10px;
+}
+
+nav {
+    overflow: hidden;
+}
+
+nav a:hover {
+    color: rgb(255, 230, 0);
+}
+
+nav a {
+    size: 40cm;
+    padding: 20px;
+    text-align: center;
+    float: left;
+    color: rgb(255, 0, 0);
+    display: flex;
+}
+
+footer {
+    background-color: rgb(0, 38, 255);
+    overflow: hidden;
+}
+
+footer a {
+    text-decoration: none;
+    padding: 20px;
+    size: 36;
+    float: left;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+body {
+    background-color: rgb(255, 208, 0);
+    color: rgb(255, 0, 0);
+    padding: 0.5px;
+    font-family: Arial, Verdana, sans-serif;
+    background-position: center;
+    margin: 2px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

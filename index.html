@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="PyLogo.png" sizes="128x555" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PYTHON PROGRAMMING HUB </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -40,7 +41,7 @@
     }
     
     footer {
-        background-color: #333;
+        background-color: rgb(238, 0, 0);
         overflow: hidden;
     }
     
@@ -49,41 +50,79 @@
         padding: 20px;
         text-align: center;
         float: left;
-        color: white;
+        color: rgb(0, 0, 0);
+    }
+    
+    * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+        font-family: "Josefin Sans", sans-serif;
+    }
+    
+    body {
+        background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+        width: 100%;
+        height: 100vh;
+        animation: changeBg 10s linear infinite;
+        display: grid;
+        background-color: rebeccapurple;
+    }
+    
+    @keyframes changeBg {
+        0% {
+            background-color: rgb(236, 80, 41);
+        }
+        20% {
+            background-color: rgb(40, 235, 40);
+        }
+        40% {
+            background-color: rgb(110, 224, 224);
+        }
+        60% {
+            background-color: rgb(75, 87, 255);
+        }
+        80% {
+            background-color: rgb(189, 255, 35);
+        }
+        100% {
+            background-color: rgb(255, 59, 255);
+        }
     }
 </style>
 
 <body>
-    <nav class="navbar" style="background-color: #e3f2fd;">
+    <nav class="navbar" style="background-color: #00eeff;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Python</a>
+            <a class="navbar-brand" href="index.html" class="btn btn-danger">Python</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html"> <button type="button" class="btn btn-danger" data-bs-target="carouselExampleDark" class="btn btn-outline-primary">HOME</button></a>
+                    </li> -->
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/"> <button type="button" class="btn btn-outline-primary">HOME</button></a>
+                        <a class="nav-link active" aria-current="page" href="Games.html"><button type="button" class="btn btn-secondary" class="btn btn-outline-secondary">Games</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Games.html"><button type="button" class="btn btn-outline-secondary">Games</button></a>
+                        <a class="nav-link active" aria-current="page" href="Sketches.html"><button type="button" class="btn btn-success" class="btn btn-outline-success">Sketches</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Sketches.html"><button type="button" class="btn btn-outline-success">Sketches</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Project.html"><button type="button" class="btn btn-outline-danger">Project</button></a>
+                        <a class="nav-link" href="Project.html"><button type="button" class="btn btn-danger" class="btn btn-outline-danger">Project</button></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <button type="button" class="btn btn-outline-warning">Turtles</button> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <button type="button" class="btn btn-warning" class="btn btn-outline-warning">Turtles</button> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             99+
                             <span class="visually-hidden">unread messages</span>
                             </span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="/Desgns.html">Turtle Designs</a>
+                                <a class="dropdown-item" href="/Designs.html">Turtle Designs</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="/Arts.html">Turtle Arts</a>
@@ -95,10 +134,10 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"><button type="button" class="btn btn-outline-dark">About</button></a>
+                        <a class="nav-link active" aria-current="page" href="Login.html"><button type="button" class="btn btn-dark" class="btn btn-outline-dark">Login</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="https://www.youtube.com/@sanjanasanjana8457"><button type="button" class="btn btn-outline-info"> My Channel</button></a>
+                        <a class="nav-link active" aria-current="page" href="https://www.youtube.com/@sanjanasanjana8457"><button type="button" class="btn btn-info" class="btn btn-outline-info"> My Channel</button></a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -109,10 +148,7 @@
         </div>
     </nav>
 
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Hey People !</strong> Please Subscribe to My Channel
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -173,7 +209,20 @@
         </button>
     </div>
 
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Hey People !</strong> Please Subscribe to My Channel
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="col ">
+        <div class="card ">
+            <a href="Project.html"><img src=" projects.png " class="card-img-top " alt=" ... "> </a>
 
+            <div class="card-body ">
+                <h5 class="card-title ">Projects</h5>
+                <p class="card-text ">Here We Have Source Codes Of Projects With Python like Calculator, Detector etc.You Can Check Out, Run And Tell me You Experience</p>
+            </div>
+        </div>
+    </div>
     <div class="container my-4">
 
         <section>
@@ -181,16 +230,26 @@
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 <div class="col">
                     <div class="card">
-                        <img src="python games.png" class="card-img-top" href="games.html" alt=" games.html ">
-                        <div class="card-body " href="games.html">
-                            <h5 class="card-title " href="Games.html">Python Games</h5>
+                        <a href="Gods.html"><img src="Gods.jpg" class="card-img-top " alt=" ... "> </a>
+                        <div class="card-body ">
+                            <h5 href="Games.html" class="card-title ">Indian Gods</h5>
+                            <p class="card-text "> Here We Have Source Codes Of Indian Mythology Gods With Python You Can Check Out, Run And Tell me You Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <a href="Games.html"><img src=" python games.png " class="card-img-top " alt=" ... "> </a>
+                        <div class="card-body ">
+                            <h5 href="Games.html" class="card-title ">Python Games</h5>
                             <p class="card-text "> Here We Have Source Codes Of Games With Python You Can Check Out, Run And Tell me You Experience</p>
                         </div>
                     </div>
                 </div>
                 <div class="col ">
                     <div class="card ">
-                        <img src="sketch.jpg " class="card-img-top " alt="... ">
+                        <a href="Sketches.html"><img src="sketch.jpg" class="card-img-top " alt=" ... "> </a>
+
                         <div class="card-body ">
                             <h5 class="card-title ">SketchPY</h5>
                             <p class="card-text ">Here We Have Source Codes Of Photo to Sketches With Python You Can Check Out, Run And Tell me You Experience</p>
@@ -199,19 +258,32 @@
                 </div>
                 <div class="col ">
                     <div class="card ">
-                        <img src="projects.png " class="card-img-top " alt="... ">
+                        <a href="Superheros.html"><img src="Superheros.jpg" class="card-img-top " alt=" ... "> </a>
+
                         <div class="card-body ">
-                            <h5 class="card-title ">Projects</h5>
-                            <p class="card-text ">Here We Have Source Codes Of Projects With Python like Calculator, Detector etc.You Can Check Out, Run And Tell me You Experience</p>
+                            <h5 class="card-title ">Superheros</h5>
+                            <p class="card-text ">Here We Have Source Codes Of Amazing Superheros of World With Python You Can Check Out, Run And Tell me You Experience</p>
                         </div>
                     </div>
                 </div>
                 <div class="col ">
                     <div class="card ">
-                        <img src="turtle.jpg " class="card-img-top " alt="... ">
+                        <a href="Animes.html"><img src="Animes.jpg" class="card-img-top " alt=" ... "> </a>
+
                         <div class="card-body ">
-                            <h5 class="card-title ">Turtles</h5>
-                            <p class="card-text ">Here We Have Source Codes Of Amazing Turtle Designs With Python You Can Check Out, Run And Tell me You Experience</p>
+                            <h5 class="card-title ">Animes</h5>
+                            <p class="card-text ">Here We Have Source Codes Of Cartoons that you loved most With Python You Can Check Out, Run And Tell me You Experience</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col ">
+                    <div class="card ">
+                        <a href="Indian Actors.html"><img src="Indian Actors.webp" class="card-img-top " alt=" ... "> </a>
+
+                        <div class="card-body ">
+                            <h5 class="card-title ">Indian Actors</h5>
+                            <p class="card-text ">Here We Have Source Codes Of Indian Actors With Python You Can Check Out, Run And Tell me You Experience</p>
                         </div>
                     </div>
                 </div>
@@ -219,44 +291,60 @@
         </section>
     </div>
 
-<div id="carouselExampleFade" class="carousel slide carousel-fade">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="Krishna.png" class="d-block w-100" alt="...">
+
+    <section>
+        <h2> <span> You Tube </span> </h2>
+        <div class="container ">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                <div class="carousel-inner ">
+                    <div class="carousel-item active ">
+                        <img src="Krishna.png " class="d-block w-100 " alt="... ">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="Vijay.png " class="d-block w-100 " alt="... ">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="Tom.png " class="d-block w-100 " alt="... ">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="Doreamon.png " class="d-block w-100 " alt="... ">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="Turtles.png " class="d-block w-100 " alt="... ">
+                    </div>
+                </div>
+                <button class="carousel-control-prev " type="button " data-bs-target="#carouselExampleFade " data-bs-slide="prev ">
+          <span class="carousel-control-prev-icon " aria-hidden="true "></span>
+          <span class="visually-hidden ">Previous</span>
+        </button>
+                <button class="carousel-control-next " type="button " data-bs-target="#carouselExampleFade " data-bs-slide="next ">
+          <span class="carousel-control-next-icon " aria-hidden="true "></span>
+          <span class="visually-hidden ">Next</span>
+        </button>
+            </div>
+        </div>
+    </section>
     </div>
-    <div class="carousel-item">
-      <img src="Doreamon.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="Tom.png" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="Vijay.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="Turtles.png" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
     <div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-  <label for="floatingTextarea2">Comments</label>
-</div>
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Comments</label>
+    </div>
     <footer>
-        <a href="#"> Contact Us </a>
-        <a href="#"> Terms Of Use </a>
-        <a href="#"> Privacy Policy </a>
+        <a href="# "> Contact Us </a>
+        <a href="# "> Terms Of Use </a>
+        <a href="# "> Privacy Policy </a>
     </footer>
 
     < <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js " integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN " crossorigin="anonymous "></script>
 </body>
 
-</html>
+</html>oter>
+<a href="# "> Contact Us </a>
+<a href="# "> Terms Of Use </a>
+<a href="# "> Privacy Policy </a>
+</footer>
+
+< <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js " integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN " crossorigin="anonymous "></script>
+    </body>
+
+    </html>

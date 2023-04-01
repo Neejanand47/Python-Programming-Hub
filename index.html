@@ -1,17 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="PyLogo.png" sizes="128x555" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PYTHON PROGRAMMING HUB </title>
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Python Programming Hub</title>
 </head>
 <style>
     h1 {
         color: #f5d837;
         background: #000;
+    }
+    
+    button {
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan;
+        background-color: aqua;
+    }
+    
+    button:hover {
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
     }
     
     section h2 {
@@ -51,6 +65,7 @@
         text-align: center;
         float: left;
         color: rgb(0, 0, 0);
+        background-color: #df0202;
     }
     
     * {
@@ -61,101 +76,55 @@
     }
     
     body {
-        background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Back.jpg);
         width: 100%;
         height: 100vh;
         animation: changeBg 10s linear infinite;
         display: grid;
         background-color: rebeccapurple;
     }
-    
-    @keyframes changeBg {
-        0% {
-            background-color: rgb(236, 80, 41);
-        }
-        20% {
-            background-color: rgb(40, 235, 40);
-        }
-        40% {
-            background-color: rgb(110, 224, 224);
-        }
-        60% {
-            background-color: rgb(75, 87, 255);
-        }
-        80% {
-            background-color: rgb(189, 255, 35);
-        }
-        100% {
-            background-color: rgb(255, 59, 255);
-        }
-    }
 </style>
 
 <body>
-    <nav class="navbar" style="background-color: #00eeff;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html" class="btn btn-danger">Python</a>
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen'></i>
+            <span class="logo navLogo" style="color: #000;"><a href="#"><button> Python Programming Hub </button></a></span>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html"> <button type="button" class="btn btn-danger" data-bs-target="carouselExampleDark" class="btn btn-outline-primary">HOME</button></a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Games.html"><button type="button" class="btn btn-secondary" class="btn btn-outline-secondary">Games</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Sketches.html"><button type="button" class="btn btn-success" class="btn btn-outline-success">Sketches</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Project.html"><button type="button" class="btn btn-danger" class="btn btn-outline-danger">Project</button></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <button type="button" class="btn btn-warning" class="btn btn-outline-warning">Turtles</button> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            99+
-                            <span class="visually-hidden">unread messages</span>
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="/Designs.html">Turtle Designs</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/Arts.html">Turtle Arts</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Try Something New</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Login.html"><button type="button" class="btn btn-dark" class="btn btn-outline-dark">Login</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="https://www.youtube.com/@sanjanasanjana8457"><button type="button" class="btn btn-info" class="btn btn-outline-info"> My Channel</button></a>
-                    </li>
+            <div class="menu">
+                <div class="logo-toggle">
+                    <span class="logo"><a href="#">Python</a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Libraries.html">Python Libraries</a></li>
+                    <li><a href="https://github.com/Neejanand47">Github</a></li>
+                    <li><a href="https://www.youtube.com/@sanjanasanjana8457">Channel</a> </li>
+                    <li><a href="Login.html">Login</a></li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+            </div>
+
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-moon moon'></i>
+                    <i class='bx bx-sun sun'></i>
+                </div>
+
+                <div class="searchBox">
+                    <div class="searchToggle">
+                        <i class='bx bx-x cancel'></i>
+                        <i class='bx bx-search search'></i>
+                    </div>
+
+                    <div class="search-field">
+                        <input type="text" placeholder="Search...">
+                        <i class='bx bx-search'></i>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-
-
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="Python Libraries.html">Python Library</a></li>
-
-            <li class="breadcrumb-item active" aria-current="page"> CodeLibrary <span class="badge text-bg-success">New</span></li>
-        </ol>
     </nav>
 
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
@@ -329,22 +298,58 @@
         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
         <label for="floatingTextarea2">Comments</label>
     </div>
-    <footer>
-        <a href="# "> Contact Us </a>
-        <a href="# "> Terms Of Use </a>
-        <a href="# "> Privacy Policy </a>
-    </footer>
 
-    < <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js " integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN " crossorigin="anonymous "></script>
+
+    <a href="About.html"> Contact Us </a>
+    <a href="# "> Terms Of Use </a>
+    <a href="Login.html"> Privacy Policy </a>
+    </footer>
+    <script>
+        const body = document.querySelector("body"),
+            nav = document.querySelector("nav"),
+            modeToggle = document.querySelector(".dark-light"),
+            searchToggle = document.querySelector(".searchToggle"),
+            sidebarOpen = document.querySelector(".sidebarOpen"),
+            siderbarClose = document.querySelector(".siderbarClose");
+
+        let getMode = localStorage.getItem("mode");
+        if (getMode && getMode === "dark-mode") {
+            body.classList.add("dark");
+        }
+
+        // js code to toggle dark and light mode
+        modeToggle.addEventListener("click", () => {
+            modeToggle.classList.toggle("active");
+            body.classList.toggle("dark");
+
+            // js code to keep user selected mode even page refresh or file reopen
+            if (!body.classList.contains("dark")) {
+                localStorage.setItem("mode", "light-mode");
+            } else {
+                localStorage.setItem("mode", "dark-mode");
+            }
+        });
+
+        // js code to toggle search box
+        searchToggle.addEventListener("click", () => {
+            searchToggle.classList.toggle("active");
+        });
+
+
+        //   js code to toggle sidebar
+        sidebarOpen.addEventListener("click", () => {
+            nav.classList.add("active");
+        });
+
+        body.addEventListener("click", e => {
+            let clickedElm = e.target;
+
+            if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")) {
+                nav.classList.remove("active");
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js " integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN " crossorigin="anonymous "></script>
 </body>
 
-</html>oter>
-<a href="# "> Contact Us </a>
-<a href="# "> Terms Of Use </a>
-<a href="# "> Privacy Policy </a>
-</footer>
-
-< <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js " integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN " crossorigin="anonymous "></script>
-    </body>
-
-    </html>
+</html>

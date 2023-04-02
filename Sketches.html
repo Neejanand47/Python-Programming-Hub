@@ -3,11 +3,35 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="PyLogo.png" sizes="128x555" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sketches</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<style>
+<style type="text/css" media="screen">
+    code {
+        font-size: 120%;
+    }
+    
+    pre code {
+        background-color: #eee;
+        border: 1px solid #999;
+        display: block;
+        padding: 10px;
+        line-height: 240%;
+        margin: 50px;
+        width: 750px;
+    }
+    
+    .container {
+        text-align: center;
+    }
+    
+    .container pre {
+        display: inline-block;
+        text-align: left;
+    }
+    
     section h2 {
         background: linear-gradient(to right, #f5d837, rgb(0, 38, 255), aqua, green, red);
         color: rgb(72, 255, 0);
@@ -33,6 +57,42 @@
         --bs-bg-opacity: 1;
         background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
     }
+    
+    * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+        font-family: "Josefin Sans", sans-serif;
+    }
+    
+    body {
+        width: 100%;
+        height: 100vh;
+        animation: changeBg 5s linear infinite;
+        display: grid;
+        background-color: rebeccapurple;
+    }
+    
+    @keyframes changeBg {
+        0% {
+            background-color: rgb(228, 130, 130);
+        }
+        20% {
+            background-color: rgb(107, 189, 107);
+        }
+        40% {
+            background-color: rgb(114, 224, 224);
+        }
+        60% {
+            background-color: rgb(116, 122, 214);
+        }
+        80% {
+            background-color: rgb(210, 216, 130);
+        }
+        100% {
+            background-color: rgb(225, 0, 255);
+        }
+    }
 </style>
 
 <body>
@@ -50,20 +110,64 @@
     </nav>
     <div class="p-3 mb-2 bg-danger text-white">Python Sketches</div>
     <main>
+        </pre>
+        </section>
         <section>
             <h2> <span> KHAN SIR </span> </h2>
             <iframe width="1300" height="720" src="https://www.youtube.com/embed/j4MuD5ZogS0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+            from sketchpy import canvas
+            obj = canvas.sketch_from_image('G:\\python\\Sketchpy\\khan-3.jpg')
+            obj.draw()
+        </code>
+        </pre>
         </section>
         <section>
-            <h2> <span> Tom Holland </span> </h2>
-            <iframe width="1300" height="720" src="https://www.youtube.com/embed/SKfWwiQJOno" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h2> <span> Code With Harry </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/730ntlTQiE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                from sketchpy import canvas
+                obj = canvas.sketch_from_image('G:\\You Pros+\\collections\\codewithharry.webp')
+                obj.draw()
+        </code>
+        </pre>
         </section>
         <section>
-            <h2>Thalapathy Vijay </h2>
-            <iframe width="1300" height="720" src="https://www.youtube.com/embed/kVezUv2pMFE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+            <h2> <span> Narendra Modi </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/qwOuxTYokx4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                from sketchpy import canvas
+                obj = canvas.sketch_from_image('G:\\python\\Sketchpy\\Narendra Modi.jpg')
+                obj.draw()
+        </code>
+        </pre>
         </section>
+        <section>
+            <h2> <span> APJ Abdul Kalam </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/r7dp6D_1spA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                from sketchpy import library
+                myObject = library.apj()
+                myObject.draw()
+        </code>
+        </pre>
+        </section>
+        <section>
+            <h2> <span>BTS </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/2xk22GDwh0Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                from sketchpy import library
+                myObject = library.bts()
+                myObject.draw()
+        </code>
+        </pre>
+        </section>
+
     </main>
 
     <div class="callout ">...</div>
@@ -92,5 +196,9 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
+
+</html>
+
+</html>
 
 </html>

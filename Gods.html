@@ -1,0 +1,2680 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="PyLogo.png" sizes="128x555" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gods</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<style type="text/css" media="screen">
+    code {
+        font-size: 120%;
+    }
+    
+    pre code {
+        background-color: #eee;
+        border: 1px solid #999;
+        display: block;
+        padding: 10px;
+        line-height: 140%;
+        margin: 250px;
+        width: 750px;
+    }
+    
+    .container {
+        text-align: center;
+    }
+    
+    .container pre {
+        display: inline-block;
+        text-align: left;
+    }
+    
+    section h2 {
+        background: linear-gradient(to right, #f5d837, rgb(0, 38, 255), aqua, green, red);
+        color: rgb(72, 255, 0);
+        border-radius: 20px;
+        text-align: center;
+        text-decoration: overline;
+        text-transform: capitalize;
+        text-indent: 10px;
+        border-style: groove;
+        padding: 20px;
+        color: blue;
+    }
+    
+    .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+    
+    .bg-success {
+        --bs-bg-opacity: 1;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+    }
+    
+    body {
+        width: 100%;
+        height: 100vh;
+        animation: changeBg 5s linear infinite;
+        display: grid;
+        background-color: rebeccapurple;
+    }
+    
+    @keyframes changeBg {
+        0% {
+            background-color: rgb(228, 130, 130);
+        }
+        20% {
+            background-color: rgb(107, 189, 107);
+        }
+        40% {
+            background-color: rgb(114, 224, 224);
+        }
+        60% {
+            background-color: rgb(116, 122, 214);
+        }
+        80% {
+            background-color: rgb(210, 216, 130);
+        }
+        100% {
+            background-color: rgb(225, 0, 255);
+        }
+    }
+</style>
+
+<body>
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+        <!-- Navbar content -->
+    </nav>
+    <nav class="navbar bg-body-danger">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="p-3 mb-2 bg-danger text-black">Indian Gods</div>
+    <main>
+
+
+        <section>
+            <h2> <span> Lord Ram </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/cerYie3yzpE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                import turtle as tu
+                import cv2
+                from svgpathtools import svg2paths2
+                from svg.path import parse_path
+                from tqdm import tqdm
+                class sketch_from_svg:
+
+    def __init__(self,path,scale=30,x_offset=400,y_offset=400):
+
+        self.path = path
+        self.x_offset = x_offset
+        self.y_offset = y_offset
+        self.scale = scale
+
+    def hex_to_rgb(self,string):
+        strlen = len(string)
+        if string.startswith('#'):
+            if strlen == 7:
+                r = string[1:3]
+                g = string[3:5]
+                b = string[5:7]
+            elif strlen == 4:
+                r = string[1:2]*2
+                g = string[2:3]*2
+                b = string[3:4]*2
+        elif strlen == 3:
+                r = string[0:1]*2
+                g = string[1:2]*2
+                b = string[2:3]*2
+        else:
+            r = string[0:2]
+            g = string[2:4]
+            b = string[4:6]
+        
+        return int(r,16)/255,int(g,16)/255, int(b,16)/255
+
+    
+
+    def load_svg(self):
+        print('loading data')
+        paths,attributes,svg_att = svg2paths2(self.path)
+        h = svg_att["height"]
+        w = svg_att['width']
+        self.height = int(h[:h.find('.')])
+        self.width = int(w[:w.find('.')])
+
+        res = []
+        for i in tqdm(attributes):
+            path = parse_path(i['d'])
+            co = i['fill']
+            #print(co)
+            col = self.hex_to_rgb(co)
+            #print(col)
+            n = len(list(path))+2       
+            pts = [((int((p.real/self.width)*self.scale))-self.x_offset, (int((p.imag/self.height)*self.scale))-self.y_offset) for p in (path.point(i/n) for i in range(0,n+1))]
+            res.append((pts,col))
+            #res.append(pts)
+        print('svg data loaded')
+        return res
+
+    def move_to(self,x, y):
+        self.pen.up()
+        self.pen.goto(x,y)
+        self.pen.down()
+
+
+    def draw(self,retain=True):
+        coordinates = self.load_svg()
+        self.pen = tu.Turtle()
+        self.pen.speed(0)
+        for path_col in coordinates:
+            f = 1
+            self.pen.color('black')
+            #print(path_col)
+            path = path_col[0]
+            #print(path_col)
+            col = path_col[1]
+            #print(col)
+            self.pen.color(col)
+            self.pen.begin_fill()
+            next = 0
+            for coord in path:
+                #for coord in path_col:
+                x,y = coord
+                y *= -1
+                #print(x,y)
+                if f:
+                    self.move_to(x, y)
+                    f=0
+                else:
+                    self.pen.goto(x,y)
+            self.pen.end_fill()
+
+        if retain == True:
+            tu.done()
+pen= sketch_from_svg('Ram1.svg',scale=80)
+pen.draw()   
+       </code> </pre>
+        </section>
+        <section>
+            <h2> <span> Ganesha </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/cerYie3yzpE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+            import turtle
+import random
+
+t = turtle.Turtle()
+
+t.speed(9)
+t.pensize(3)
+
+t.showturtle()
+wn = turtle.Screen()
+wn.bgcolor("Black")
+
+t.pencolor("red")
+
+def myPosition(x,y):
+    t.penup()
+    t.goto(x,y)
+    t.pendown()
+
+myPosition(-13,170)
+
+t.forward(50)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(100)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(50)
+
+turtle.pencolor("darkorange")
+
+myPosition(-13,185)
+t.forward(35)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(70)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(35)
+
+t.pencolor("gold")
+
+myPosition(-13,200)
+
+t.forward(25)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(50)
+t.left(90)
+t.forward(10)
+t.left(90)
+t.forward(25)
+
+t.pencolor("yellow")
+
+myPosition(-13,215)
+t.pencolor("red")
+
+for i in range(12):
+    t.forward(5)
+    t.left(30)
+myPosition(-13,160)
+t.right(90)
+t.left(15)
+t.forward(10)
+t.right(15)
+t.forward(15)
+t.right(15)
+t.forward(10)
+t.left(15)
+t.right(165)
+t.forward(10)
+t.right(15)
+t.forward(15)
+t.right(15)
+t.forward(10)
+t.left(15)
+
+t.pencolor("gold")
+myPosition(-20,-180)
+
+t.left(90)
+for i in range(7):
+    t.right(20)
+    t.forward(20)
+t.forward(10)
+t.left(5)
+t.forward(5)
+t.left(5)
+t.forward(10)
+t.left(5)
+t.forward(15)
+t.left(30)
+t.forward(10)
+t.left(5)
+t.forward(10)
+
+for i in range(2):
+    t.left(20)
+    t.forward(6)
+t.right(20)
+t.forward(60)
+t.left(100)
+t.forward(20)
+
+for i in range(8):
+    t.right(20)
+    t.forward(1)
+t.forward(20)
+t.left(50)
+t.forward(30)
+
+for i in range(4):
+    t.left(20)
+    t.forward(10)
+t.forward(20)
+t.left(95)
+t.forward(50)
+t.right(155)
+t.forward(80)
+t.right(120)
+turtle.forward(80)
+
+for i in range(4):
+    t.right(20)
+    t.forward(15)
+t.forward(25)
+t.right(30)
+t.forward(5)
+t.left(150)
+t.forward(5)
+t.right(118)
+t.forward(80)
+
+for i in range(3):
+    t.right(20)
+    t.forward(20)
+t.forward(20)
+
+for i in range(4):
+    t.left(24)
+    t.forward(25)
+myPosition(-1,-130)
+t.left(15)
+
+for i in range(7):
+    t.right(30)
+    t.forward(10)
+
+t.left(8)
+for i in range(4):
+    t.right(24)
+    t.forward(20)
+
+for i in range(3):
+    t.left(20)
+    t.forward(25)
+t.left(10)
+t.forward(60)
+t.right(20)
+t.forward(50)
+
+for i in range(3):
+    t.right(22)
+    t.forward(15)
+t.right(15)
+t.forward(55)
+t.right(105)
+t.forward(70)
+t.right(160)
+t.forward(50)
+t.left(80)
+turtle.forward(20)
+
+for i in range(3):
+    t.left(23)
+    t.forward(15)
+t.left(3)
+t.forward(20)
+t.left(90)
+t.forward(20)
+
+for i in range(3):
+    t.right(50)
+    t.forward(3)
+t.forward(15)
+t.left(90)
+t.forward(60)
+
+for i in range(4):
+    t.right(10)
+    t.forward(15)
+t.forward(23)
+t.right(15)
+t.forward(5)
+t.right(15)
+t.forward(8)
+
+for i in range(6):
+    t.left(15)
+    t.forward(10)
+t.left(160)
+t.forward(20)
+t.right(40)
+t.forward(5)
+
+for i in range(5):
+    t.right(20)
+    t.forward(5)
+t.forward(10)
+
+myPosition(-330,-250)
+t.pencolor("red")
+
+t.write('Happy Ganesh Chaturthi', font=("Bradley Hand ITC", 40, "bold"))
+turtle.dot
+turtle.done()
+    </code> </pre>
+        </section>
+
+        <section>
+            <h2> <span> Hanuman </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/Ac8GV_DajUk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                from turtle import Turtle,Screen
+                import turtle
+                k=Turtle()
+                k.speed(0)
+                k.color("#FF8C00")
+                s=Screen()
+                s.bgcolor("black")
+                k.penup()
+                k.goto(-300,450)
+                k.begin_fill()
+                k.pendown()
+                k.left(70)
+                k.circle(-52,45)
+                k.circle(-100,45)
+                k.circle(-200,45)
+                k.fd(40)
+                k.circle(-10,45)
+                k.fd(40)
+                k.circle(7,180)
+                k.fd(40)
+                k.right(128)
+                k.circle(-200,30)
+                k.fd(40)
+                k.right(120)
+                k.fd(25)
+                k.left(132)
+                k.circle(-80,30)
+                k.fd(20)
+                k.circle(80,30)
+                k.left(20)
+                k.circle(-80,45)
+                k.fd(10)
+                k.circle(-15,90)
+                k.fd(30)
+                k.circle(5,150)
+                k.fd(10)
+                k.circle(-2,170)
+                k.fd(140)
+                k.left(170)
+                k.circle(-150,70)
+                k.right(100)
+                k.circle(190,40)
+                k.circle(-20,98)
+                k.fd(80)
+                k.circle(-25,70)
+                k.fd(25)
+                k.circle(5,110)
+                k.circle(55,30)
+                k.right(70)
+                k.fd(7)
+                k.right(15)
+                k.back(10)
+                k.right(120)
+                k.fd(20)
+                k.right(120)
+                k.fd(30)
+                k.circle(-2,40)
+                k.fd(30)
+                k.right(120)
+                k.fd(20)
+                k.left(53)
+                k.fd(60)
+                k.circle(-25,80)
+                k.left(120)
+                k.fd(20)
+                k.circle(-5,170)
+                k.left(180)
+                k.circle(-100,25)
+                k.left(120)
+                k.fd(10)
+                k.right(120)
+                k.fd(40)
+                k.right(80)
+                k.fd(20)
+                k.circle(2,160)
+                k.circle(80,20)
+                k.right(110)
+                k.fd(10)
+                k.circle(-2,70)
+                k.fd(30)
+                k.left(58)
+                k.fd(110)
+                k.circle(-50,55)
+                k.left(160)
+                k.fd(20)
+                k.right(110)
+                k.circle(-42,45)
+                k.circle(-15,90)
+                k.circle(-15,50)
+                k.fd(10)
+                k.circle(4,184)
+                k.end_fill()
+                
+                k.penup()
+                k.goto(-350,195)
+                k.pendown()
+                k.begin_fill()
+                k.left(5)
+                k.circle(30,40)
+                k.left(15)
+                k.circle(-100,40)
+                k.circle(4,185)
+                k.fd(45)
+                k.circle(60,45)
+                
+                k.circle(5,90)
+                k.end_fill()
+                
+                k.penup()
+                k.goto(-390,205)
+                k.pendown()
+                k.begin_fill()
+                k.left(55)
+                k.circle(30,45)
+                k.circle(5,120)
+                k.fd(10)
+                k.right(120)
+                k.circle(-20,90)
+                k.circle(1,90)
+                k.circle(10,60)
+                k.left(50)
+                k.circle(30,40)
+                k.circle(40,45)
+                k.left(5)
+                k.fd(3)
+                k.circle(10,120)
+                k.end_fill()
+                
+                k.penup()
+                k.goto(-450,-60)
+                k.pendown()
+                k.begin_fill()
+                k.right(104)
+                k.circle(-65,40)
+                k.circle(100,40)
+                k.circle(20,73)
+                k.fd(60)
+                k.right(5)
+                k.fd(25)
+                k.left(20)
+                k.circle(30,45)
+                k.circle(40,70)
+                k.circle(100,35)
+                k.fd(10)
+                k.circle(20,100)
+                k.circle(-30,60)
+                k.left(234)
+                k.fd(60)
+                k.left(45)
+                k.circle(100,20)
+                k.end_fill()
+                
+                #tika
+                k.color("black")
+                k.penup()
+                k.goto(-280,165)
+                k.goto(-310,420)
+                k.pendown()
+                k.begin_fill()
+                k.left(28)
+                k.fd(60)
+                k.left(5)
+                k.fd(50)
+                k.circle(2,180)
+                k.right(5)
+                k.fd(50)
+                k.left(8)
+                k.fd(60)
+                k.end_fill()
+                
+                #leftrighttika
+                k.penup()
+                k.goto(-310,250)
+                k.pendown()
+                k.begin_fill()
+                k.left(45)
+                k.circle(-55,60)
+                k.left(10)
+                k.fd(110)
+                k.left(178)
+                k.fd(130)
+                k.circle(55,60)
+                k.left(62)
+                k.circle(45,60)
+                k.fd(140)
+                k.left(178)
+                k.fd(130)
+                k.circle(-50,45)
+                k.end_fill()
+                
+                
+                
+                k.penup()
+                k.goto(-265,420)
+                k.pendown()
+                k.begin_fill()
+                k.left(27)
+                k.circle(200,30)
+                k.circle(-200,24)
+                k.circle(-3,180)
+                k.fd(3)
+                k.back(40)
+                k.right(120)
+                k.fd(10)
+                k.circle(-5,150)
+                k.left(20)
+                
+                k.circle(7,90)
+                
+                k.fd(15)
+                k.right(210)
+                k.fd(10)
+                k.circle(-5,85)
+                k.fd(50)
+                k.circle(80,30)
+                k.left(170)
+                k.circle(-80,30)
+                k.fd(20)
+                k.right(160)
+                k.fd(70)
+                k.right(184)
+                k.fd(70)
+                k.right(160)
+                k.circle(-150,30)
+                k.left(133)
+                k.fd(20)
+                k.circle(-90,30)
+                k.right(90)
+                k.fd(10)
+                k.left(185)
+                k.circle(150,30)
+                
+                k.fd(20)
+                k.circle(-1,170)
+                k.right(10)
+                k.fd(120)
+                k.left(165)
+                k.fd(30)
+                k.circle(-10,45)
+                k.left(5)
+                k.circle(25,60)
+                k.circle(-2,180)
+                k.fd(5)
+                k.left(15)
+                k.circle(-30,60)
+                k.circle(30,70)
+                k.left(160)
+                k.circle(-30,90)
+                k.left(90)
+                k.fd(45)
+                k.right(90)
+                k.circle(-30,60)
+                k.left(160)
+                k.circle(30,70)
+                k.right(70)
+                k.fd(13)
+                k.right(130)
+                k.fd(120)
+                k.circle(-143,24)
+                k.end_fill()
+                
+                
+                #facecorrection(not created proper so..)
+                k.color("black")
+                k.penup()
+                k.goto(-300,450)
+                k.right(70)
+                k.begin_fill()
+                k.pendown()
+                k.left(70)
+                k.circle(-52,45)
+                k.right(20)
+                k.circle(-100,45)
+                k.circle(-100,45)
+                k.fd(40)
+                k.left(20)
+                k.circle(-10,45)
+                k.fd(20)
+                k.circle(5,180)
+                k.fd(20)
+                k.right(128)
+                k.circle(-150,30)
+                k.fd(40)
+                k.right(120)
+                k.fd(25)
+                k.left(132)
+                k.circle(-80,30)
+                k.fd(20)
+                k.circle(80,30)
+                k.left(20)
+                k.circle(-80,45)
+                k.circle(-15,90)
+                k.right(10)
+                k.fd(30)
+                k.circle(5,150)
+                k.fd(10)
+                k.left(10)
+                k.circle(-2,170)
+                k.fd(70)
+                k.left(174)
+                k.circle(-150,70)
+                k.fd(20)
+                k.left(90)
+                k.fd(200)
+                k.left(90)
+                k.fd(500)
+                k.left(45)
+                k.fd(300)
+                k.left(45)
+                k.fd(150)
+                k.left(68)
+                k.fd(230)
+                k.end_fill()
+                
+                k.color("#FF8C00")
+                k.penup()
+                k.goto(-270,187)
+                k.pendown()
+                k.begin_fill()
+                k.right(168)
+                k.circle(-20,90)
+                k.left(65)
+                k.fd(20)
+                k.right(130)
+                k.circle(10,90)
+                k.left(90)
+                k.circle(-10,45)
+                k.circle(5,45)
+                k.left(85)
+                k.circle(-7,250)
+                
+                k.fd(3)
+                k.circle(-17,90)
+                k.right(8)
+                k.fd(25)
+                k.left(170)
+                k.fd(23)
+                k.circle(17,90)
+                k.left(3)
+                k.fd(20)
+                k.circle(-2,90)
+                k.fd(10)
+                k.right(90)
+                k.fd(20)
+                k.circle(-27,90)
+                k.right(4)
+                k.fd(60)
+                k.end_fill()
+                
+                #ear
+                
+                k.color("#FF8C00")
+                k.penup()
+                k.goto(-120,100) 
+                k.pendown()
+                k.begin_fill()
+                k.right(80)
+                k.fd(25) 
+                k.right(5)
+                k.fd(25)
+                k.right(100) 
+                k.fd(5)
+                k.circle(5,120)
+                k.fd(15)
+                k.circle(-40,45)
+                k.circle(-50,70)
+                k.right(10)
+                k.circle(-30,45) 
+                k.circle(-70,50)
+                k.right(35)
+                k.fd(30)
+                k.left(17)
+                k.fd(60)
+                k.left(90) 
+                k.circle(-10,300)
+                k.left(70)
+                k.fd(15)
+                k.left(133)
+                k.fd(7)
+                k.end_fill()
+                k.penup()
+                k.color("black")
+                
+                k.goto(-115,130)
+                
+                k.pendown()
+                
+                k.begin_fill()
+                k.right(190) 
+                k.circle(40,40)
+                k.circle(20,70)
+                k.right(60)
+                k.circle(-47,45) 
+                k.circle(-27,90)
+                k.circle(-5,45)
+                k.fd(40)
+                k.circle(-7,50)
+                k.fd(30)
+                k.right(163)
+                k.circle(-90,20)
+                k.circle(2,60)
+                k.fd(25)
+                k.circle(7,90)
+                k.right(10)
+                k.circle(30,40)
+                k.circle(5,54)
+                k.fd(47)
+                k.left(5)
+                k.circle(-12,90)
+                k.circle(-20,45)
+                k.end_fill()
+                
+                #Neck
+                
+                k.color("#FF8C00")
+                k.penup()
+                k.goto(-106,90)
+                k.pendown()
+                k.begin_fill()
+                k.right(185)
+                k.circle(-70,35)
+                k.circle(-20,45) 
+                k.circle(-10,50)
+                k.right(20)
+                k.circle(-30,90)
+                k.circle(3,180)
+                k.right(8)
+                k.circle(40,90)
+                k.circle(15,50)
+                k.circle(20,45)
+                k.left(5)
+                k.circle(66,45) 
+                k.circle(5,180)
+                k.end_fill()
+                
+                k.penup()
+                k.goto(-190,20)
+                k.pendown()
+                k.begin_fill()
+                k.left(45)
+                k.circle(70,30)
+                k.right(105)
+                k.fd(45)
+                k.right(150)
+                k.fd(20)
+                k.left(140)
+                k.fd(45)
+                k.left(20)
+                k.fd(10)
+                k.circle(-10,30)
+                k.fd(25)
+                k.circle(40,25)
+                k.fd(15)
+                k.circle(-3,160)
+                k.left(10) 
+                k.circle(-80,35)
+                k.circle(2,170)
+                k.fd(35)
+                k.right(20)
+                k.fd(50)
+                k.right(20)
+                k.fd(50)
+                k.right(20)
+                k.fd(40)
+                k.circle(-6,150)
+                k.right(35)
+                k.circle(150,40)
+                k.circle(1,150)
+                k.fd(30)
+                k.circle(-1,160)
+                k.fd(20)
+                k.circle(1,150)
+                k.fd(45)
+                k.circle(20,30)
+                k.circle(-2,150)
+                k.circle(-7,55)
+                k.fd(35)
+                k.circle(2,180)
+                k.circle(-45,15)
+                k.fd(125)
+                k.left(120)
+                k.fd(5)
+                k.right(135)
+                k.circle(-15,60)
+                k.right(105)
+                k.fd(95)
+                k.left(150)
+                k.circle(-100,30)
+                k.circle(-2,90)
+                k.right(20) 
+                k.circle(90,30)
+                k.right(90)
+                k.circle(60,50)
+                k.fd(25)
+                k.circle(-7,90)
+                k.circle(-48,45)
+                k.circle(1,160)
+                k.circle(80,45)
+                k.right(85)
+                k.circle(-50,32)
+                k.left(115)
+                k.circle(170,35)
+                k.end_fill()
+                
+                #shoulder
+                k.penup()
+                k.goto(-100,-30)
+                k.pendown() 
+                k.begin_fill()
+                k.left(195)
+                k.circle(-50,45)
+                k.circle(-160,20)
+                k.right(20)
+                k.fd(20)
+                k.left(45)
+                k.circle(-100,45)
+                k.right(168)
+                k.circle(80,40)
+                k.left(110)
+                k.fd(45)
+                k.right(135)
+                k.fd(10)
+                k.left(135)
+                k.circle(35,45)
+                k.left(130)
+                k.fd(15)
+                k.right(160)
+                k.circle(100,45)
+                k.left(103)
+                k.fd(130)
+                k.left(170)
+                k.fd (60)
+                k.right(170)
+                k.fd(62)
+                k.left(45)
+                k.fd(25)
+                k.left(90)
+                k.circle(-100,30)
+                k.right(156)
+                k.fd(50)
+                k.left(90)
+                k.circle(110,45)
+                k.left(130)
+                k.fd(15)
+                k.right(130)
+                k.fd(25)
+                k.left(170)
+                k.circle(-80,40)
+                k.right(150)
+                k.circle(120,60)
+                k.end_fill()
+                
+                #hairs
+                k.penup()
+                k.goto(-200,600)
+                k.pendown()
+                k.begin_fill()
+                k.right(145)
+                k.fd(50)
+                k.circle(-50,50)
+                k.circle(50,50)
+                k.circle(-100,70)
+                k.fd(50)
+                k.circle(10,90)
+                k.fd(15)
+                k.right(165)
+                k.fd(25)
+                k.circle(3,170)
+                k.right(10)
+                k.fd(40)
+                k.circle(-50,55)
+                k.right(165) 
+                k.circle(50,55)
+                k.left(130)
+                k.circle(-80,70)
+                k.right(160)
+                k.circle(40,45)
+                k.left(157)
+                k.right(30)
+                k.circle(-65,55)
+                k.left(120)
+                k.circle(-60,100)
+                k.left(90)
+                k.fd(20)
+                k.circle(50,60)
+                k.right(160)
+                k.circle(-50,70)
+                k.left(120)
+                k.fd(15) 
+                k.circle(20,95)
+                k.fd(20)
+                k.circle(-30,70)
+                k.circle(60,35)
+                k.right(115) 
+                k.circle(-40,90)
+                k.left(165)
+                k.fd(35)
+                k.circle(-30,90)
+                k.circle(5,120)
+                k.fd(20)
+                k.circle(-150,40)
+                k.right(170)
+                k.circle(140,40) 
+                k.circle(-50,90)
+                k.left(60)
+                k.fd(25)
+                k.left(105)
+                k.circle(70,90)
+                k.right(90)
+                k.fd(10)
+                k.left(110)
+                k.circle(-140,70)
+                k.right(135) 
+                k.circle(70,40)
+                k.right(130)
+                k.circle(-30,40)
+                k.left(130)
+                k.circle(180,30)
+                k.left(115)
+                k.fd(90)
+                k.left(120)
+                k.circle(-80,40)
+                k.right(153)
+                k.fd(60)
+                k.left(160)
+                k.fd(100)
+                k.left(48)
+                k.circle(500,123)
+                k.end_fill()
+                k.hideturtle()
+                
+                
+                turtle.done()
+            </code> </pre>
+        </section>
+        <section>
+            <h2> <span> Radha Krishna </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/pUVxOQpW9jU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                import turtle
+
+                wn=turtle.Screen()         
+                wn.setup(768,768)         
+                wn.title("Python Programming Hub")
+                wn.bgcolor("#444444")
+                
+                
+                
+                #color1
+                v=turtle.Turtle()
+                v.color('red')
+                v.speed(0)
+                v.ht()
+                v.up()
+                v.seth(-90)
+                v.fd(100)
+                v.seth(1)
+                v.fd(79)
+                v.down()
+                
+                v.begin_fill()
+                v.color('#0dcc80')
+                v.pensize(1)
+                v.seth(80)
+                v.circle(30,51)
+                v.fd(18)
+                v.seth(150)
+                v.circle(-50,37)
+                v.circle(-250,23)
+                v.seth(88)
+                v.fd(80)
+                
+                v.seth(90)
+                v.circle(-120,45)
+                v.circle(-45,21)
+                v.seth(40)
+                v.circle(-100,49)
+                #v.fd(78)
+                
+                v.seth(-2)
+                v.circle(-100,62)
+                v.fd(80)
+                v.fd(45)
+                v.circle(15,43)
+                v.circle(-120,60)
+                v.seth(-90)
+                v.fd(95)
+                v.seth(180)
+                v.fd(290)
+                v.end_fill()
+                
+                
+                #
+                v.color('blue')
+                v.up()
+                v.home()
+                v.seth(-90)
+                v.fd(100)
+                v.seth(1)
+                v.fd(80)
+                
+                v.seth(80)
+                v.circle(30,51)
+                v.fd(18)
+                v.seth(150)
+                v.circle(-50,37)
+                v.circle(-250,23)
+                v.down()
+                v.begin_fill()
+                v.color('#f2ae72')
+                v.seth(86)
+                v.fd(80)
+                
+                v.seth(90)
+                v.circle(-118,44)
+                v.circle(-43,92)
+                v.fd(70)
+                v.seth(-38)
+                v.fd(50)
+                v.circle(-75,44)
+                v.fd(50)
+                v.circle(70,48)
+                v.seth(-5)
+                v.fd(20)
+                v.circle(-7,82)
+                v.fd(25)
+                v.circle(-60,80)
+                v.seth(180)
+                v.fd(150)
+                v.seth(140)
+                v.circle(-210,33)
+                v.end_fill()
+                
+                #color2
+                v.color('blue')
+                v.up()
+                v.home()
+                v.seth(-90)
+                v.fd(100)
+                v.seth(-179)
+                v.fd(124)
+                v.seth(90)
+                v.fd(367)
+                v.down()
+                v.begin_fill()
+                v.color('#122ea5','#f623d0')
+                v.seth(173)
+                v.circle(150,60)
+                v.seth(-155)
+                v.circle(238,33)
+                v.seth(-92)
+                v.circle(95,60)
+                v.seth(55)
+                v .circle(-500,22)
+                v.seth(-10)
+                v .circle(-500,21)
+                v.seth(-93)
+                v .circle(-560,22)
+                v.seth(0)
+                v.fd(90)
+                v.seth(87)
+                v .circle(500,22)
+                v .circle(-80,20)
+                v.seth(51)
+                v.circle(95,28)
+                v.seth(115)
+                v.circle(200,55)
+                v.end_fill()
+                
+                v.color('green')
+                v.up()
+                v.home()
+                v.seth(-90)
+                v.fd(105)
+                v.seth(-179)
+                v.fd(213)
+                v.down()
+                v.begin_fill()
+                v.color('#008bba','#008bba')
+                v.seth(140)
+                v .circle(-393,26)
+                v.seth(55)
+                v .circle(-500,22)
+                v.seth(-10)
+                v .circle(-500,21)
+                v.seth(-93)
+                v .circle(-560,22)
+                v.end_fill()
+                
+                #Radha
+                
+                b=turtle.Turtle()
+                #b.color('red')
+                b.up()
+                b.speed(0)
+                b.seth(0)
+                b.fd(22)
+                b.seth(90)
+                b.fd(103)
+                
+                b.pensize(5)
+                b.down()
+                #1 eye1 1
+                b.seth(10)
+                b.circle(-50,25)
+                b.pensize(4)
+                b.circle(-50,10)
+                b.pensize(3)
+                b.circle(-50,5)
+                b.pensize(2)
+                b.circle(-50,3)
+                
+                b.up()
+                b.seth(180)
+                b.fd(35)
+                b.seth(-90)
+                b.fd(14)
+                b.down()
+                #1 eye1 2
+                b.seth(-46)
+                b.fd(5)
+                b.pensize(3)
+                b.fd(10)
+                b.pensize(4)
+                b.fd(4)
+                b.pensize(5)
+                b.circle(25,62)
+                b.pensize(4)
+                b.seth(-48)
+                b.fd(3)
+                b.pensize(3)
+                b.fd(4)
+                b.pensize(2)
+                b.fd(3)
+                
+                b.up()
+                b.seth(45)
+                b.fd(63)
+                b.down()
+                #1 eye2 1
+                b.circle(-100,3)
+                b.pensize(3)
+                b.circle(-100,8)
+                b.pensize(4)
+                b.circle(-100,9)
+                b.pensize(5)
+                b.circle(-100,13)
+                b.pensize(4)
+                b.circle(-100,8)
+                b.pensize(3)
+                b.circle(-100,6)
+                b.pensize(2)
+                b.circle(-100,3)
+                
+                b.up()
+                b.seth(-139)
+                b.fd(103)
+                b.down()
+                #1 eye2 2
+                b.seth(46)
+                b.fd(4)
+                b.pensize(3)
+                b.fd(6)
+                b.pensize(4)
+                b.fd(6)
+                b.seth(-5)
+                b.circle(115,5)
+                b.pensize(5)
+                b.circle(115,10)
+                b.pensize(6)
+                b.circle(115,15)
+                b.pensize(5)
+                b.circle(115,10)
+                b.pensize(4)
+                b.circle(115,5)
+                b.pensize(3)
+                b.circle(115,5)
+                b.pensize(2)
+                b.circle(115,5)
+                
+                b.color('#e10808')
+                b.up()
+                b.seth(176)
+                b.fd(142)
+                b.down()
+                #2 pottu #ff0000
+                b.pensize(7)
+                b.circle(2)
+                
+                
+                b.color('black')
+                b.pensize(4)
+                b.up()
+                b.seth(-94)
+                b.fd(118)
+                b.down()
+                #3 nose
+                b.seth(-125)
+                b.circle(15,85)
+                b.fd(10)
+                
+                b.pensize(3)
+                b.up()
+                b.seth(-115)
+                b.fd(22)
+                b.down()
+                #3 mouth #ff4040
+                b.begin_fill()
+                b.color('#e10808','#ff4040')
+                b.seth(28)
+                b.fd(15)
+                b.circle(-9,85)
+                b.seth(75)
+                b.circle(-9,83)
+                b.circle(40,48)
+                b.seth(-131)
+                b.circle(-65,62)
+                b.end_fill()
+                #b.pensize(3)
+                b.up()
+                b.seth(-70)
+                b.fd(6)
+                b.down()
+                b.begin_fill()
+                b.color('#e10808','#ff4040')
+                b.seth(-34)
+                b.circle(35,80)
+                b.end_fill()
+                
+                
+                b.color('black')
+                b.pensize(2)
+                b.up()
+                b.seth(150)
+                b.fd(99)
+                b.down()
+                #3 face
+                b.seth(-67)
+                b.fd(10)
+                b.pensize(3)
+                b.fd(40)
+                b.circle(122,36)
+                b.seth(0)
+                b.fd(27)
+                b.seth(27)
+                b.circle(220,40)
+                b.pensize(2)
+                b.circle(220,5)
+                
+                
+                b.color('yellow')
+                b.pensize(3)
+                b.up()
+                b.seth(-60)
+                b.fd(10)
+                b.down()
+                #3 hear1
+                b.seth(-90)
+                b.fd(32)
+                b.seth(0)
+                b.circle(-25,160)
+                b.pensize(4)
+                b.circle(-25,100)
+                b.pensize(5)
+                b.circle(-25,50)
+                b.pensize(4)
+                b.circle(-25,35)
+                b.pensize(3)
+                b.circle(-25,15)
+                b.color('#fa6900')
+                b.pensize(3)
+                b.up()
+                b.seth(-10)
+                b.fd(40)
+                b.down()
+                #3 hear2
+                b.seth(-90)
+                b.fd(14)
+                b.seth(0)
+                b.circle(-10,160)
+                b.pensize(4)
+                b.circle(-10,100)
+                b.pensize(5)
+                b.circle(-10,50)
+                b.pensize(4)
+                b.circle(-10,35)
+                b.pensize(3)
+                b.circle(-10,15)
+                
+                b.color('#ff0066')#2e482e'
+                b.pensize(4)
+                b.up()
+                b.seth(147)
+                b.fd(315)
+                b.down()
+                #3 hair1
+                b.seth(90)
+                b.circle(-120,5)
+                b.pensize(3)
+                b.circle(-120,40)
+                b.pensize(3)
+                b.circle(-45,50)
+                b.pensize(4)
+                b.circle(-45,42)
+                b.fd(70)
+                b.seth(-38)
+                b.fd(50)
+                b.pensize(5)
+                b.circle(-75,44)
+                b.fd(50)
+                b.circle(70,48)
+                b.seth(-5)
+                b.pensize(4)
+                b.fd(20)
+                b.circle(-7,82)
+                b.pensize(3)
+                b.fd(25)
+                b.circle(-60,33)
+                b.pensize(2)
+                b.circle(-60,10)
+                
+                
+                b.pensize(1)
+                b.up()
+                b.seth(-90)
+                b.fd(15)
+                b.seth(-179)
+                b.fd(212)
+                b.down()
+                #3 hair2
+                b.pensize(7)
+                b.seth(80)
+                b.circle(30,51)
+                b.pensize(4)
+                b.fd(18)
+                b.pensize(7)
+                b.seth(150)
+                b.circle(-50,37)
+                b.pensize(6)
+                b.circle(-250,13)
+                b.pensize(5)
+                b.circle(-250,6)
+                b.pensize(4)
+                b.circle(-250,4)
+                
+                b.pensize(1)
+                b.up()
+                b.seth(56)
+                b.fd(238)
+                b.down()
+                #3 hair3
+                b.pensize(4)
+                b.seth(-2)
+                b.circle(-100,31)
+                b.pensize(6)
+                b.circle(-100,31)
+                b.fd(80)
+                b.pensize(4)
+                b.fd(45)
+                
+                
+                b.pensize(1)
+                b.up()
+                b.seth(133)
+                b.fd(100)
+                b.down()
+                #3 hair4
+                b.seth(-78)
+                b.pensize(2)
+                b.circle(132,5)
+                b.pensize(3)
+                b.circle(132,10)
+                b.pensize(4)
+                b.circle(132,20)
+                b.pensize(5)
+                b.circle(132,20)
+                b.circle(-120,20)
+                b.pensize(4)
+                b.circle(-120,10)
+                b.pensize(3)
+                b.circle(-120,8)
+                b.pensize(2)
+                b.circle(-120,7)
+                
+                b.color('black')
+                b.pensize(1)
+                b.up()
+                b.seth(144)
+                b.fd(368)
+                b.down()
+                #3 hair5
+                b.begin_fill()
+                b.seth(45)
+                b.circle(-35,92)
+                b.fd(70)
+                b.seth(-42)
+                b.fd(30)
+                b.circle(-80,14)
+                b.fd(60)
+                b.seth(152)
+                b.circle(-220,27)
+                b.seth(115)
+                b.circle(220,20)
+                b.circle(2,176)
+                b.circle(-150,25)
+                b.circle(281,27)
+                b.seth(138)
+                b.circle(-280,26)
+                b.circle(280,16)
+                b.circle(24,65)
+                b.end_fill()
+                b.ht()
+                
+                
+                #Krishna
+                
+                c=turtle.Turtle()
+                c.speed(0)
+                #c.color('red')
+                
+                c.up()
+                c.seth(166)
+                c.fd(200)
+                c.down()
+                #1 eye1 1
+                c.pensize(4)
+                c.seth(150)
+                c.circle(70,13)
+                c.pensize(5)
+                c.circle(70,10)
+                c.pensize(6)
+                c.circle(70,10)
+                c.pensize(7)
+                c.circle(70,15)
+                c.pensize(5)
+                c.circle(70,8)
+                c.pensize(3)
+                c.circle(70,7)
+                c.pensize(2)
+                c.circle(70,5)
+                
+                
+                c.up()
+                c.seth(-19.5)
+                c.fd(104)
+                c.down()
+                #1 eye1 2
+                c.pensize(5)
+                c.seth(137)
+                c.fd(8)
+                c.pensize(4)
+                c.fd(5)
+                c.circle(8,92)
+                c.circle(-37,26)
+                c.pensize(5)
+                c.circle(-37,20)
+                c.pensize(6)
+                c.circle(-37,10)
+                c.pensize(7)
+                c.circle(-37,10)
+                c.pensize(6)
+                c.circle(-37,10)
+                c.pensize(4)
+                c.circle(-37,10)
+                c.pensize(3)
+                c.fd(8)
+                c.pensize(2)
+                c.fd(7)
+                c.pensize(1)
+                c.fd(5)
+                
+                c.up()
+                c.seth(17.5)
+                c.fd(123)
+                c.down()
+                #1 eye2 1
+                c.pensize(5)
+                c.seth(58)
+                c.circle(-80,5)
+                c.pensize(6)
+                c.circle(-80,10)
+                c.pensize(7)
+                c.circle(-80,15)
+                c.pensize(8)
+                c.circle(-80,15)
+                c.pensize(7)
+                c.circle(-80,10)
+                c.pensize(6)
+                c.circle(-80,8)
+                c.pensize(4)
+                c.circle(-80,7)
+                c.pensize(3)
+                c.circle(-80,5)
+                c.pensize(2)
+                c.circle(-80,3)
+                c.pensize(1)
+                c.circle(-80,2)
+                
+                
+                c.up()
+                c.seth(-139)
+                c.fd(118)
+                c.down()
+                #1 eye2 2
+                c.pensize(5)
+                c.seth(68)
+                c.fd(6)
+                c.pensize(4)
+                c.fd(3)
+                c.pensize(3)
+                c.fd(6)
+                c.circle(-12,57)
+                c.pensize(4)
+                c.circle(-12,20)
+                c.pensize(5)
+                c.circle(-12,10)
+                c.pensize(6)
+                c.circle(45,30)
+                c.pensize(7)
+                c.circle(45,20)
+                c.pensize(6)
+                c.circle(45,15)
+                c.pensize(4)
+                c.circle(45,8)
+                c.pensize(3)
+                c.circle(45,7)
+                c.fd(17)
+                c.pensize(2)
+                c.fd(10)
+                
+                c.color('#ff0000')
+                c.up()
+                c.seth(163)
+                c.fd(165)
+                c.down()
+                #2 pottu #ff0000
+                c.seth(-10)
+                c.pensize(4)
+                c.fd(5)
+                c.seth(-45)
+                c.circle(-50,30)
+                c.pensize(5)
+                c.circle(-50,10)
+                c.pensize(6)
+                c.fd(15)
+                c.circle(45,39)
+                c.circle(7,138)
+                c.pensize(7)
+                c.fd(30)
+                c.pensize(6)
+                c.fd(20)
+                c.pensize(5)
+                c.fd(10)
+                c.pensize(4)
+                c.fd(5)
+                c.circle(-18,35)
+                c.pensize(3)
+                c.circle(-18,20)
+                
+                c.color('black')
+                c.up()
+                c.seth(-89.5)
+                c.fd(167)
+                c.down()
+                #2 nose
+                c.circle(45,40)
+                
+                
+                c.up()
+                c.seth(-120)
+                c.fd(31)
+                c.down()
+                #3 mouth
+                c.begin_fill()
+                c.color('#e10808','#ff4040')
+                c.seth(27)
+                c.fd(18)
+                c.circle(-9,85)
+                c.seth(78)
+                c.circle(-10,98)
+                c.circle(25,80)
+                c.seth(-127)
+                c.circle(-67,68)
+                c.end_fill()
+                c.up()
+                c.seth(-35)
+                c.fd(13)
+                c.down()
+                c.seth(-30)
+                c.begin_fill()
+                c.color('#e10808','#ff4040')
+                c.circle(37,85)
+                c.end_fill()
+                
+                c.pensize(1)
+                c.up()
+                c.seth(151.5)
+                c.fd(270)
+                c.down()
+                #3 head1 #4d6742
+                c.begin_fill()
+                c.color('#122ea5')#4d6742
+                c.seth(127)
+                c.circle(-90,43)
+                c.seth(45.5)
+                c.fd(118)
+                c.circle(-1,165)
+                c.fd(74)
+                c.circle(25,45)
+                c.seth(-111)
+                c.fd(50)
+                c.seth(-40)
+                c.fd(10)
+                c.seth(61)
+                c.fd(100)
+                c.circle(-185,32)
+                c.circle(1,175)
+                c.circle(200,37)
+                c.circle(-2.5,180)
+                c.fd(48)
+                c.seth(60)
+                c.circle(-180,58)
+                c.seth(173)
+                c.circle(150,60)
+                c.seth(-155)
+                c.circle(238,33)
+                c.seth(-92)
+                c.circle(95,43)
+                c.end_fill()
+                
+                c.up()
+                c.seth(23)
+                c.fd(55)
+                c.down()
+                #3 head2
+                c.begin_fill()
+                c.seth(52)
+                c.circle(-400,24)
+                c.seth(-165)
+                c.circle(200,50)
+                c.end_fill()
+                
+                c.up()
+                c.seth(38)
+                c.fd(150)
+                c.down()
+                #3 head3
+                c.begin_fill()
+                c.seth(2)
+                c.circle(-180,20)
+                c.seth(133)
+                c.circle(55,70)
+                c.end_fill()
+                
+                c.up()
+                c.seth(9)
+                c.fd(152)
+                c.down()
+                #3 head4
+                c.begin_fill()
+                c.seth(-20)
+                c.circle(-50,98)
+                c.seth(80)
+                c.circle(70,65)
+                c.end_fill()
+                
+                
+                c.up()
+                c.seth(-91)
+                c.fd(80)
+                c.down()
+                #1 hair1
+                c.begin_fill()
+                c.color('#fcaa00','yellow')
+                c.seth(-35)
+                c.pensize(3)
+                c.circle(-25,45)
+                c.pensize(4)
+                c.circle(-25,50)
+                c.pensize(5)
+                c.circle(-10,70)
+                c.pensize(5)
+                c.circle(-18,80)
+                c.end_fill()
+                c.circle(-11,150)
+                c.pensize(4)
+                c.circle(-11,60)
+                c.pensize(3)
+                c.circle(-11,30)
+                c.pensize(2)
+                c.circle(-11,20)
+                c.pensize(1)
+                c.circle(-11,10)
+                
+                
+                
+                c.up()
+                c.seth(32)
+                c.fd(29)
+                c.down()
+                #1 hair2
+                c.begin_fill()
+                c.color('#fcaa00','yellow')
+                c.seth(24)
+                c.pensize(3)
+                c.circle(-25,45)
+                c.pensize(4)
+                c.circle(-25,50)
+                c.pensize(5)
+                c.circle(-11,70)
+                c.pensize(5)
+                c.circle(-19,80)
+                c.end_fill()
+                c.circle(-12,150)
+                c.pensize(4)
+                c.circle(-12,60)
+                c.pensize(3)
+                c.circle(-12,30)
+                c.pensize(2)
+                c.circle(-12,20)
+                c.pensize(1)
+                c.circle(-12,10)
+                
+                c.up()
+                c.seth(170)
+                c.fd(31)
+                c.down()
+                #1 hair3
+                c.begin_fill()
+                c.color('#fcaa00','yellow')
+                c.seth(-33)
+                c.pensize(3)
+                c.circle(-48,45)
+                c.pensize(4)
+                c.circle(-48,50)
+                c.pensize(5)
+                c.circle(-22,90)
+                c.pensize(6)
+                c.circle(-30,95)
+                c.end_fill()
+                c.pensize(6)
+                c.circle(-20,150)
+                c.pensize(5)
+                c.circle(-20,60)
+                c.pensize(4)
+                c.circle(-20,30)
+                c.pensize(3)
+                c.circle(-20,20)
+                c.pensize(2)
+                c.circle(-20,10)
+                
+                
+                c.up()
+                c.seth(169)
+                c.fd(245)
+                c.down()
+                #2 hair1
+                c.begin_fill()
+                c.color('#fcaa00','yellow')
+                c.seth(-155)
+                c.pensize(3)
+                c.circle(25,45)
+                c.pensize(4)
+                c.circle(25,50)
+                c.pensize(5)
+                c.circle(10,85)
+                c.pensize(6)
+                c.circle(16,70)
+                c.end_fill()
+                c.circle(10,150)
+                c.pensize(4)
+                c.circle(10,60)
+                c.pensize(3)
+                c.circle(10,30)
+                c.pensize(2)
+                c.circle(10,20)
+                c.pensize(1)
+                c.circle(10,10)
+                
+                c.up()
+                c.seth(167)
+                c.fd(23)
+                c.down()
+                #2 hair2
+                c.begin_fill()
+                c.color('#fcaa00','yellow')
+                c.seth(168)
+                c.pensize(3)
+                c.circle(25,45)
+                c.pensize(4)
+                c.circle(25,50)
+                c.pensize(5)
+                c.circle(12,85)
+                c.pensize(6)
+                c.circle(19,70)
+                c.end_fill()
+                c.circle(11,150)
+                c.pensize(4)
+                c.circle(11,60)
+                c.pensize(3)
+                c.circle(11,30)
+                c.pensize(2)
+                c.circle(11,20)
+                c.pensize(1)
+                c.circle(11,10)
+                
+                c.up()
+                c.seth(21)
+                c.fd(30)
+                c.down()
+                #2 hair3
+                c.begin_fill()
+                c.color('#fcaa00','yellow')
+                c.seth(-148)
+                c.pensize(3)
+                c.circle(48,40)
+                c.pensize(5)
+                c.circle(48,50)
+                c.pensize(6)
+                c.circle(22,90)
+                c.pensize(7)
+                c.circle(30,95)
+                c.end_fill()
+                c.pensize(6)
+                c.circle(20,150)
+                c.pensize(5)
+                c.circle(20,60)
+                c.pensize(4)
+                c.circle(20,30)
+                c.pensize(3)
+                c.circle(20,20)
+                c.pensize(2)
+                c.circle(20,10)
+                
+                c.color('#b4491c')
+                c.up()
+                c.seth(33)
+                c.fd(258)
+                c.down()
+                #1 peacock1
+                c.pensize(3)
+                c.seth(85)
+                c.circle(150,25)
+                
+                c.pensize(1)
+                c.up()
+                c.seth(-88)
+                c.fd(42)
+                c.down()
+                #1 peacock2
+                c.begin_fill()
+                c.color("#9c0f5f")
+                c.seth(131)
+                c.circle(-75,45)
+                c.circle(-12,150)
+                c.circle(-85,35)
+                c.seth(88)
+                c.circle(75,34)
+                c.circle(5,137)
+                c.circle(75,40)
+                c.end_fill()
+                
+                c.up()
+                c.seth(135)
+                c.fd(15)
+                c.down()
+                #1 peacock3
+                c.begin_fill()
+                c.color("#60047a")
+                c.seth(140)
+                c.circle(-65,77)
+                c.circle(-20,125)
+                c.circle(-85,45)
+                c.seth(84)
+                c.circle(75,32)
+                c.circle(15,140)
+                c.circle(65,47)
+                c.end_fill()
+                c.end_fill()
+                
+                c.up()
+                c.seth(-110)
+                c.fd(4)
+                c.down()
+                #1 peacock4
+                c.begin_fill()
+                c.color("green")
+                c.seth(140)
+                c.circle(-70,70)
+                c.circle(-28,145)
+                c.circle(-85,27)
+                c.seth(54)
+                c.circle(50,50)
+                c.circle(-30,60)
+                c.seth(-140)
+                c.circle(50,35)
+                c.seth(74)
+                c.circle(100,36)
+                c.seth(-82)
+                c.circle(-70,35)
+                c.seth(92)
+                c.circle(55,50)
+                c.circle(-35,65)
+                c.seth(-135)
+                c.circle(125,70)
+                c.seth(140)
+                c.circle(-80,50)
+                c.seth(-94)
+                c.circle(100,70)
+                c.end_fill()
+                c.ht()
+                
+                
+                
+                
+                
+                #pullangulal
+                
+                d=turtle.Turtle()
+                d.color('#443020')
+                d.speed(0)
+                
+                d.up()
+                d.seth(-159)
+                d.fd(296)
+                d.down()
+                #1 
+                d.pensize(3)
+                d.seth(-90)
+                d.begin_fill()
+                d.fd(18)
+                d.seth(-179)
+                d.fd(20)
+                d.seth(90)
+                d.fd(18)
+                d.seth(1)
+                d.fd(20)
+                d.end_fill()
+                
+                d.begin_fill()
+                d.color('#443020','#a47747')
+                d.fd(550)
+                d.seth(-90)
+                d.fd(18)
+                d.seth(-179)
+                d.fd(550)
+                d.seth(90)
+                d.fd(18)
+                d.end_fill()
+                d.color('#443020')
+                d.pensize(1)
+                d.seth(1)
+                d.fd(115)
+                d.seth(-50)
+                d.begin_fill()
+                d.circle(18,103)
+                d.end_fill()
+                d.seth(1)
+                d.fd(91)
+                d.seth(-50)
+                d.begin_fill()
+                d.circle(18,103)
+                d.end_fill()
+                d.seth(1)
+                d.fd(35)
+                d.seth(-50)
+                d.begin_fill()
+                d.circle(18,103)
+                d.end_fill()
+                d.seth(1)
+                d.fd(35)
+                d.seth(-50)
+                d.begin_fill()
+                d.circle(18,103)
+                d.end_fill()
+                d.seth(1)
+                d.fd(35)
+                d.seth(-50)
+                d.begin_fill()
+                d.circle(18,100)
+                d.end_fill()
+                d.seth(1)
+                d.fd(99)
+                d.seth(-90)
+                d.fd(18)
+                d.seth(-179)
+                d.fd(550)
+                d.seth(90)
+                d.fd(18)
+                
+                
+                d.seth(1)
+                d.fd(550)
+                d.seth(-90)
+                d.fd(1)
+                d.begin_fill()
+                d.seth(1)
+                d.fd(15)
+                d.seth(90)
+                d.fd(5)
+                d.circle(-7,115)
+                d.fd(55)
+                d.seth(-162)
+                d.fd(55)
+                d.circle(-7,115)
+                d.fd(5)
+                d.seth(-179)
+                d.fd(15)
+                d.end_fill()
+                
+                
+                d.pensize(5)
+                d.up()
+                d.seth(-90)
+                d.fd(1)
+                d.seth(-179)
+                d.fd(47)
+                d.down()
+                d.begin_fill()
+                d.color('#160a47','#0dc9f7')
+                d.seth(-110)
+                d.circle(-130,90)
+                d.circle(500,50)
+                d.seth(20)
+                d.circle(-400,46)
+                d.circle(204,101)
+                d.end_fill()
+                d.ht()
+            </code> </pre>
+        </section>
+        <section>
+            <h2> <span> Lord Shiva </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/aiKwOQDSo1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h1>Source Code</h1>
+            <pre class="brush: python"> <code>
+                import turtle
+
+                turtle.speed(0)
+                turtle.setup(800,600)
+                turtle.speed(9)
+                turtle.up()
+                
+                def my_goto(x, y):
+                    turtle.pencolor("orange")
+                    turtle.penup()
+                    turtle.goto(x, y)
+                    turtle.pendown()
+                
+                def round_rectangle(center_x,center_y,width,height,cornersize):
+                    turtle.up()
+                    turtle.goto(center_x-width/2+cornersize,center_y-height/2)
+                    turtle.down()
+                    for _ in range(2):
+                        turtle.fillcolor("black")
+                        turtle.begin_fill()
+                        turtle.fd(width-2*cornersize)
+                        turtle.circle(cornersize,90)
+                        turtle.fd(height-2*cornersize)
+                        turtle.circle(cornersize,90)
+                        turtle.end_fill()
+                
+                def round_rectangle(center_x,center_y,width,height,cornersize):
+                    turtle.up()
+                    turtle.goto(center_x-width/2+cornersize,center_y-height/2)
+                    turtle.down()
+                    for _ in range(2):
+                        turtle.fillcolor("black")
+                        turtle.begin_fill()
+                        turtle.fd(width-2*cornersize)
+                        turtle.circle(cornersize,90)
+                        turtle.fd(height-2*cornersize)
+                        turtle.circle(cornersize,90)
+                        turtle.end_fill()
+                
+                round_rectangle(0,0,200,300,80)
+                turtle.fillcolor('black')
+                turtle.begin_fill()
+                
+                turtle.goto(-35, 40)
+                turtle.fillcolor('white')
+                turtle.begin_fill()
+                turtle.forward(80)
+                turtle.left(90)
+                turtle.forward(10)
+                turtle.left(90)
+                turtle.forward(80)
+                turtle.left(90)
+                turtle.forward(10)
+                turtle.left(90)
+                
+                turtle.goto(-35, 80)
+                turtle.forward(80)
+                turtle.left(90)
+                turtle.forward(10)
+                turtle.left(90)
+                turtle.forward(80)
+                turtle.left(90)
+                turtle.forward(10)
+                turtle.left(90)
+                
+                turtle.goto(-35, 60)
+                turtle.forward(80)
+                turtle.left(90)
+                turtle.forward(10)
+                turtle.left(90)
+                turtle.forward(80)
+                turtle.left(90)
+                turtle.forward(10)
+                turtle.left(90)
+                turtle.pendown()
+                
+                turtle.end_fill()
+                turtle.fillcolor('red')
+                turtle.begin_fill()
+                turtle.goto(5,50)
+                turtle.penup()
+                turtle.circle(15)
+                turtle.pendown()
+                turtle.end_fill()
+                
+                turtle.goto(-150, -175)
+                turtle.begin_fill()
+                turtle.pencolor("black")
+                turtle.fillcolor("black")
+                round_rectangle(90,-125,600,100,50)
+                turtle.begin_fill()
+                turtle.goto(-70,-175)
+                turtle.setheading(110)
+                turtle.circle(80,-100)
+                turtle.goto(140,-280)
+                turtle.setheading(350)
+                turtle.circle(80,-100)
+                turtle.end_fill()
+                turtle.done()
+            </code> </pre>
+        </section>
+        <section>
+            <h2> <span> ShivaJi Maharaj </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/iG8x5hzZANw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python"> <code>
+                # chhatrapati SHIVAJI
+                import turtle as t
+                
+                t.bgcolor("orangered")
+                t.screensize(1400,1000)
+                
+                corr = [(780,-209),(750,-208),(700,-207),(650,-206),
+                        (580,-205),(560,-203),(540,-200),(520,-198),
+                        (520,-193),(526,-190),(530,-180),(536,-172),
+                        (538,-160),(543,-123),(540,-112),(533,-100),
+                        (525,-86),(525,-80),(530,-60),(532,-40),
+                        (531,-24),(534,-21),(540,-23),(550,-26),
+                        (553,-30),(556,-40),(540,-90),(540,-108),
+                        (543,-120),(550,-126),(567,-136),(562,-120),
+                        (562,-115),(567,-100),(578,-80),(580,-76),
+                        (584,-60),(586,-40),(582,-20),(580,-14),
+                        (570,-9),(560,-5),(550,-6),(540,-8),
+                        (530,-11),(518,0),(512,8),(502,8),(500,10),
+                        (482,20),(470,36),(460,49),(468,63),(465,66),
+                        (470,80),(468,100),(466,110),(460,120),
+                        (458,123),(455,122),(452,130),(456,136),
+                        (460,145),(463,133),(459,128),(472,128),
+                        (468,140),(463,157),(470,157),(478,152),
+                        (475,166),(471,165),(460,162),(457,165),
+                        (443,165),(437,160),(427,153),(423,149),
+                        (424,138),(419,133),(419,130),(422,128),
+                        (423,127),(426,124),(423,120),(423,118),
+                        (420,116),(420,114),(428,116),(430,118),
+                        (432,118),(432,116),(428,114),(414,92),
+                        (405,84),(390,77),(386,79),(377,79),
+                        (375,76),(364,76),(357,88),(352,86),
+                        (348,92),(340,93),(330,96),(326,96),
+                        (320,92),(312,97),(307,92),(304,95),
+                        (306,100),(308,102),(307,104),(307,108),
+                        (304,107),(304,120),(303,124),(308,132),
+                        (300,129),(298,128),(288,120),(282,104),
+                        (283,100),(284,97),(288,92),(285,89),
+                        (278,87),(283,77),(281,72),(288,67),
+                        (287,59),(284,57),(284,54),(287,50),
+                        (286,48),(290,43),(288,40),(300,26),
+                        (298,17),(305,14),(312,15),(316,17),
+                        (320,20),(322,40),(324,47),(326,49),
+                        (333,40),(342,18),(343,3),(345,-6),
+                        (342,-18),(342,-22),(346,-36),(350,-38),
+                        (348,-43),(340,-41),(336,-37),(320,-33),
+                        (312,-40),(307,-47),(303,-100),(308,-115),
+                        (314,-118),(320,-120),(328,-122),(328,-110),
+                        (324,-103),(318,-100),(319,-61),(322,-57),
+                        (340,-60),(366,-78),(366,-100),(368,-106),
+                        (366,-120),(363,-140),(361,-157),(358,-163),
+                        (350,-166),(340,-178),(320,-164),(300,-151),
+                        (280,-140),(260,-130),(240,-122),(220,-112),
+                        (200,-102),(180,-100),(150,-98),(125,-96),
+                        (100,-94),(75,-92),(50,-90),(25,-88),
+                        (0,-86),(-25,-83),(-50,-81),(-75,-79),
+                        (-100,-77),(-125,-75),(-150,-72),(-175,-70),
+                        (-800,-68),
+                        (-800,-500),(800,-500),(800,-210)]
+                
+                part1 = [(418,70),(412,73),(404,67),(393,64),
+                         (382,66),(382,60),(390,58),(392,50),
+                         (400,46),(402,48),(408,51),(417,58),(418,60)]
+                
+                part2 = [(380,-186),(400,-190),(420,-193),(440,-195),
+                         (460,-197),(503,-199),(508,-186),(520,-174),
+                         (520,-162),(528,-158),(531,-127),(520,-113),
+                         (500,-106),(495,-102),(500,-117),(500,-123),
+                         (480,-132),(452,-153),(440,-153),(440,-163),
+                         (430,-177),(424,-180),(420,-176),(426,-160),
+                         (437,-144),(440,-145),(467,-122),(467,-120),
+                         (460,-107),(453,-100),(450,-85),(450,-72),
+                         (440,-74),(408,-72),(400,-80),(397,-80),
+                         (390,-77),(386,-85),(380,-108),(377,-123),
+                         (375,-140),(370,-160),(374,-166),(362,-180)]
+                
+                
+                name = [[(-560,320),(-560,300),(-590,300),(-590,220),(-560,220),
+                         (-560,200),(-610,200),(-610,320)],
+                        [(-530,320),(-530,270),(-510,270),(-510,320),(-490,320),
+                         (-490,200),(-510,200),(-510,250),(-530,250),(-530,200),
+                         (-550,200),(-550,320)],
+                        [(-460,320),(-460,270),(-440,270),(-440,320),(-420,320),
+                         (-420,200),(-440,200),(-440,250),(-460,250),(-460,200),
+                         (-480,200),(-480,320)],
+                        [(-350,320),(-350,200),(-370,200),(-370,250),(-390,250),
+                         (-390,200),(-410,200),(-410,320)],
+                        [(-280,320),(-280,300),(-300,300),(-300,200),(-320,200),
+                         (-320,300),(-340,300),(-340,320)],
+                        [(-210,320),(-210,250),(-230,250),(-210,200),(-230,200),
+                         (-250,250),(-250,200),(-270,200),(-270,320)],
+                        [(-140,320),(-140,200),(-160,200),(-160,250),(-180,250),
+                         (-180,200),(-200,200),(-200,320)],
+                        [(-70,320),(-70,250),(-110,250),(-110,200),
+                         (-130,200),(-130,320)],
+                        [(0,320),(0,200),(-20,200),(-20,250),(-40,250),
+                         (-40,200),(-60,200),(-60,320)],
+                        [(10,320),(70,320),(70,300),(50,300),(50,200),(30,200),
+                         (30,300),(10,300),(10,320)],
+                        [(80,320),(140,320),(140,300),(120,300),(120,220),(140,220),
+                         (140,200),(80,200),(80,220),(100,220),(100,300),(80,300),(80,320)]]
+                
+                
+                points = [[(-390,300),(-370,300),(-370,270),(-390,270),(-390,300)],
+                          [(-250,300),(-230,300),(-230,270),(-250,270),(-250,300)],
+                          [(-180,300),(-160,300),(-160,270),(-180,270),(-180,300)],
+                          [(-110,300),(-90,300),(-90,270),(-110,270),(-110,300)],
+                          [(-40,300),(-20,300),(-20,270),(-40,270),(-40,300)]]
+                
+                def sun():
+                    t.penup()
+                    t.speed(5)
+                    t.goto(420,-220)
+                    t.pendown()
+                    t.color("gold")
+                    t.begin_fill()
+                    t.circle(240)
+                    t.end_fill()
+                
+                def draw(c):
+                    t.penup()
+                    t.speed(7)
+                    t.goto(800,-210)
+                    t.pendown()
+                    t.color("black")
+                    t.begin_fill()
+                    for i in range(len(c)):
+                        x, y = c[i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                def part(p,g):
+                    t.penup()
+                    t.speed(6)
+                    t.goto(g)
+                    t.pendown()
+                    t.color("gold")
+                    t.begin_fill()
+                    for i in range(len(p)):
+                        x, y = p[i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                def names(n,p):
+                    #C
+                    t.penup()
+                    t.goto(-610,320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#fdfae5")
+                    t.begin_fill()
+                
+                    for i in range(len(n[0])):
+                        x, y = n[0][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                    #H
+                    t.penup()
+                    t.goto(-550, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#faf3c0")
+                    t.begin_fill()
+                
+                    for i in range(len(n[1])):
+                        x, y = n[1][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                    #H
+                    t.penup()
+                    t.goto(-480, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#f5ea92")
+                    t.begin_fill()
+                
+                    for i in range(len(n[2])):
+                        x, y = n[2][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                    #A
+                    t.penup()
+                    t.goto(-410, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#f3e260")
+                    t.begin_fill()
+                
+                    for i in range(len(n[3])):
+                        x, y = n[3][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    t.penup()
+                    t.goto(-390,300)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("orangered")
+                    t.begin_fill()
+                
+                    for i in range(len(p[0])):
+                        x, y = p[0][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                
+                    #T
+                    t.penup()
+                    t.goto(-340, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#f5dd29")
+                    t.begin_fill()
+                
+                    for i in range(len(n[4])):
+                        x, y = n[4][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    #R
+                    t.penup()
+                    t.goto(-270, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#f2d600")
+                    t.begin_fill()
+                
+                    for i in range(len(n[5])):
+                        x, y = n[5][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    t.penup()
+                    t.goto(-250, 300)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("orangered")
+                    t.begin_fill()
+                
+                    for i in range(len(p[1])):
+                        x, y = p[1][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    #A
+                    t.penup()
+                    t.goto(-200, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("gold")
+                    t.begin_fill()
+                
+                    for i in range(len(n[6])):
+                        x, y = n[6][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    t.penup()
+                    t.goto(-180, 300)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("orangered")
+                    t.begin_fill()
+                
+                    for i in range(len(p[2])):
+                        x, y = p[2][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    #P
+                    t.penup()
+                    t.goto(-130, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#e6c60d")
+                    t.begin_fill()
+                
+                    for i in range(len(n[7])):
+                        x, y = n[7][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    t.penup()
+                    t.goto(-110, 300)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("orangered")
+                    t.begin_fill()
+                
+                    for i in range(len(p[3])):
+                        x, y = p[3][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    #A
+                    t.penup()
+                    t.goto(-60, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#d9b51c")
+                    t.begin_fill()
+                
+                    for i in range(len(n[8])):
+                        x, y = n[8][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    t.penup()
+                    t.goto(-40, 300)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("orangered")
+                    t.begin_fill()
+                
+                    for i in range(len(p[4])):
+                        x, y = p[4][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    #T
+                    t.penup()
+                    t.goto(10, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#cca42b")
+                    t.begin_fill()
+                
+                    for i in range(len(n[9])):
+                        x, y = n[9][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                    #I
+                    t.penup()
+                    t.goto(80, 320)
+                    t.speed(5)
+                    t.pendown()
+                    t.color("#bd903c")
+                    t.begin_fill()
+                
+                    for i in range(len(n[10])):
+                        x, y = n[10][i]
+                        t.goto(x, y)
+                    t.end_fill()
+                
+                
+                part1Goto = (417,60)
+                part2Goto = (362,-180)
+                
+                t.speed(15)
+                wn = t.Screen()
+                wn.screensize()
+                wn.setup(width = 1.0, height = 1.0)
+                sun()
+                names(name,points)
+                draw(corr)
+                part(part1,part1Goto)
+                
+                part(part2,part2Goto)
+                
+                t.hideturtle()
+                t.Screen().exitonclick()
+            </code> </pre>
+        </section>
+    </main>
+
+    <div class="callout ">...</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js " integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN " crossorigin="anonymous "></script>
+
+
+    <div class="callout ">...</div>
+    <div class="b-example-divider"></div>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Company, Inc</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+            </ul>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+
+</html>

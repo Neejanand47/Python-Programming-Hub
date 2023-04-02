@@ -1,0 +1,3652 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="PyLogo.png" sizes="128x555" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cartoons </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<style type="text/css" media="screen">
+    code {
+        font-size: 120%;
+    }
+    
+    pre code {
+        background-color: #eee;
+        border: 1px solid #999;
+        display: block;
+        padding: 10px;
+        line-height: 140%;
+        margin: 250px;
+        width: 750px;
+    }
+    
+    .container {
+        text-align: center;
+    }
+    
+    .container pre {
+        display: inline-block;
+        text-align: left;
+    }
+    
+    section h2 {
+        background: linear-gradient(to right, #f5d837, rgb(0, 38, 255), aqua, green, red);
+        color: rgb(72, 255, 0);
+        border-radius: 20px;
+        text-align: center;
+        text-decoration: overline;
+        text-transform: capitalize;
+        text-indent: 10px;
+        border-style: groove;
+        padding: 20px;
+        color: blue;
+    }
+    
+    .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+    
+    .bg-success {
+        --bs-bg-opacity: 1;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+    }
+    
+    * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+        font-family: "Josefin Sans", sans-serif;
+    }
+    
+    body {
+        width: 100%;
+        height: 100vh;
+        animation: changeBg 5s linear infinite;
+        display: grid;
+        background-color: rebeccapurple;
+    }
+    
+    @keyframes changeBg {
+        0% {
+            background-color: rgb(228, 130, 130);
+        }
+        20% {
+            background-color: rgb(107, 189, 107);
+        }
+        40% {
+            background-color: rgb(114, 224, 224);
+        }
+        60% {
+            background-color: rgb(116, 122, 214);
+        }
+        80% {
+            background-color: rgb(210, 216, 130);
+        }
+        100% {
+            background-color: rgb(225, 0, 255);
+        }
+    }
+</style>
+
+<body>
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+        <!-- Navbar content -->
+    </nav>
+    <nav class="navbar bg-body-danger">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="p-3 mb-2 bg-danger text-white">Animes</div>
+    <main>
+        <section>
+            <h2> <span> Doreamon </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/itV7W3N2mh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python">  <code>
+                    <h3>Source Code</h3>
+                    from turtle import *
+
+                    def my_goto(x, y):
+                        penup()
+                        goto(x, y)
+                        pendown()
+                    
+                 
+                    def eyes():
+                        fillcolor("#ffffff")
+                        begin_fill()
+                    
+                        tracer(False)
+                        a = 2.5
+                        for i in range(120):
+                            if 0 <= i < 30 or 60 <= i < 90:
+                                a -= 0.05
+                                lt(3)
+                                fd(a)
+                            else:
+                                a += 0.05
+                                lt(3)
+                                fd(a)
+                        tracer(True)
+                        end_fill()
+                    
+                    
+                    # 胡须
+                    def beard():
+                        my_goto(-32, 135)
+                        seth(165)
+                        fd(60)
+                    
+                        my_goto(-32, 125)
+                        seth(180)
+                        fd(60)
+                    
+                        my_goto(-32, 115)
+                        seth(193)
+                        fd(60)
+                    
+                        my_goto(37, 135)
+                        seth(15)
+                        fd(60)
+                    
+                        my_goto(37, 125)
+                        seth(0)
+                        fd(60)
+                    
+                        my_goto(37, 115)
+                        seth(-13)
+                        fd(60)
+                    
+                    # 嘴巴
+                    def mouth():
+                        my_goto(5, 148)
+                        seth(270)
+                        fd(100)
+                        seth(0)
+                        circle(120, 50)
+                        seth(230)
+                        circle(-120, 100)
+                    
+                    # 围巾
+                    def scarf():
+                        fillcolor('#e70010')
+                        begin_fill()
+                        seth(0)
+                        fd(200)
+                        circle(-5, 90)
+                        fd(10)
+                        circle(-5, 90)
+                        fd(207)
+                        circle(-5, 90)
+                        fd(10)
+                        circle(-5, 90)
+                        end_fill()
+                    
+                    # 鼻子
+                    def nose():
+                        my_goto(-10, 158)
+                        seth(315)
+                        fillcolor('#e70010')
+                        begin_fill()
+                        circle(20)
+                        end_fill()
+                    
+                    # 黑眼睛
+                    def black_eyes():
+                        seth(0)
+                        my_goto(-20, 195)
+                        fillcolor('#000000')
+                        begin_fill()
+                        circle(13)
+                        end_fill()
+                    
+                        pensize(6)
+                        my_goto(20, 205)
+                        seth(75)
+                        circle(-10, 150)
+                        pensize(3)
+                    
+                        my_goto(-17, 200)
+                        seth(0)
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        circle(5)
+                        end_fill()
+                        my_goto(0, 0)
+                    
+                    
+                    
+                    # 脸
+                    def face():
+                    
+                        fd(183)
+                        lt(45)
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        circle(120, 100)
+                        seth(180)
+                        # print(pos())
+                        fd(121)
+                        pendown()
+                        seth(215)
+                        circle(120, 100)
+                        end_fill()
+                        my_goto(63.56,218.24)
+                        seth(90)
+                        eyes()
+                        seth(180)
+                        penup()
+                        fd(60)
+                        pendown()
+                        seth(90)
+                        eyes()
+                        penup()
+                        seth(180)
+                        fd(64)
+                    
+                    # 头型
+                    def head():
+                        penup()
+                        circle(150, 40)
+                        pendown()
+                        fillcolor('#00a0de')
+                        begin_fill()
+                        circle(150, 280)
+                        end_fill()
+                    
+                    # 画哆啦A梦
+                    def Doraemon():
+                        # 头部
+                        head()
+                    
+                        # 围脖
+                        scarf()
+                    
+                        # 脸
+                        face()
+                    
+                        # 红鼻子
+                        nose()
+                    
+                        # 嘴巴
+                        mouth()
+                    
+                        # 胡须
+                        beard()
+                    
+                        # 身体
+                        my_goto(0, 0)
+                        seth(0)
+                        penup()
+                        circle(150, 50)
+                        pendown()
+                        seth(30)
+                        fd(40)
+                        seth(70)
+                        circle(-30, 270)
+                    
+                    
+                        fillcolor('#00a0de')
+                        begin_fill()
+                    
+                        seth(230)
+                        fd(80)
+                        seth(90)
+                        circle(1000, 1)
+                        seth(-89)
+                        circle(-1000, 10)
+                    
+                        # print(pos())
+                    
+                        seth(180)
+                        fd(70)
+                        seth(90)
+                        circle(30, 180)
+                        seth(180)
+                        fd(70)
+                    
+                        # print(pos())
+                        seth(100)
+                        circle(-1000, 9)
+                    
+                        seth(-86)
+                        circle(1000, 2)
+                        seth(230)
+                        fd(40)
+                    
+                        # print(pos())
+                    
+                    
+                        circle(-30, 230)
+                        seth(45)
+                        fd(81)
+                        seth(0)
+                        fd(203)
+                        circle(5, 90)
+                        fd(10)
+                        circle(5, 90)
+                        fd(7)
+                        seth(40)
+                        circle(150, 10)
+                        seth(30)
+                        fd(40)
+                        end_fill()
+                    
+                        # 左手
+                        seth(70)
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        circle(-30)
+                        end_fill()
+                    
+                        # 脚
+                        my_goto(103.74, -182.59)
+                        seth(0)
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        fd(15)
+                        circle(-15, 180)
+                        fd(90)
+                        circle(-15, 180)
+                        fd(10)
+                        end_fill()
+                    
+                        my_goto(-96.26, -182.59)
+                        seth(180)
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        fd(15)
+                        circle(15, 180)
+                        fd(90)
+                        circle(15, 180)
+                        fd(10)
+                        end_fill()
+                    
+                        # 右手
+                        my_goto(-133.97, -91.81)
+                        seth(50)
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        circle(30)
+                        end_fill()
+                    
+                        # 口袋
+                        my_goto(-103.42, 15.09)
+                        seth(0)
+                        fd(38)
+                        seth(230)
+                        begin_fill()
+                        circle(90, 260)
+                        end_fill()
+                    
+                        my_goto(5, -40)
+                        seth(0)
+                        fd(70)
+                        seth(-90)
+                        circle(-70, 180)
+                        seth(0)
+                        fd(70)
+                    
+                        #铃铛
+                        my_goto(-103.42, 15.09)
+                        fd(90)
+                        seth(70)
+                        fillcolor('#ffd200')
+                        # print(pos())
+                        begin_fill()
+                        circle(-20)
+                        end_fill()
+                        seth(170)
+                        fillcolor('#ffd200')
+                        begin_fill()
+                        circle(-2, 180)
+                        seth(10)
+                        circle(-100, 22)
+                        circle(-2, 180)
+                        seth(180-10)
+                        circle(100, 22)
+                        end_fill()
+                        goto(-13.42, 15.09)
+                        seth(250)
+                        circle(20, 110)
+                        seth(90)
+                        fd(15)
+                        dot(10)
+                        my_goto(0, -150)
+                    
+                        # 画眼睛
+                        black_eyes()
+                    
+                    if __name__ == '__main__':
+                        screensize(800,600, "#f0f0f0")
+                        pensize(3)  # 画笔宽度
+                        speed(9)    # 画笔速度
+                        Doraemon()
+                        my_goto(100, -300)
+                        write('by Neejanand', font=("Bradley Hand ITC", 30, "bold"))
+                        mainloop()
+                    
+            </code>
+        </pre>
+        </section>
+        <section>
+            <h2> <span> Shinchan </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/4XLDXsmGv4E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python">  <code>
+                    <h3>Source Code</h3>
+                    #SHINCHAN
+                    from turtle import *
+                    #import time
+                    s=Screen()
+                    s.screensize(700,1000)
+                    speed(5)
+                    def myPosition(x, y):
+                        penup()
+                        goto(x, y)
+                        pendown()
+                    #time.sleep(10)
+                    #ht()
+                    pensize(2)
+                    def ankur():
+                        fillcolor('#ffec40')
+                        begin_fill()
+                        right(25)
+                        forward(20)
+                        right(45)
+                        forward(20)
+                        left(70)
+                        forward(90)
+                        left(95)
+                        forward(75)
+                        left(85)
+                        forward(175)
+                        left(85)
+                        forward(75)
+                        left(95)
+                        forward(90)
+                        left(85)
+                        forward(18)
+                        end_fill()
+                    
+                    def leftLeg():
+                        myPosition(-39,-25)
+                        fillcolor("#ffd699")
+                        begin_fill()
+                        right(89)
+                        forward(25)
+                        right(90)
+                        forward(50)
+                        right(90)
+                        forward(20)
+                        right(85)
+                        forward(50)
+                        end_fill()
+                    
+                    def leftSock():
+                        myPosition(-36,-78)
+                        fillcolor("#ffffff")
+                        begin_fill()
+                        right(90)
+                        circle(80,13)
+                        right(110)
+                        forward(22)
+                        right(85)
+                        forward(19)
+                        right(90)
+                        forward(21)
+                        end_fill()
+                    
+                    def leftShoe():
+                        myPosition(-69,-112)
+                        fillcolor("#b5ae60")
+                        begin_fill()
+                        right(90)
+                        left(5)
+                        forward(56)
+                        left(105)
+                        forward(13)
+                        left(75)
+                        forward(20)
+                        right(90)
+                        forward(15)
+                        circle(10,15)
+                        left(80)
+                        forward(4)
+                        circle(10,15)
+                        left(40)
+                        circle(20,15)
+                        forward(10)
+                        right(45)
+                        forward(15)
+                        circle(25,25)
+                        end_fill()
+                    
+                    def rightLeg():
+                        myPosition(60,-28)
+                        fillcolor("#ffd699")
+                        begin_fill()
+                        #right(90)
+                        left(128)
+                        forward(25)
+                        right(95)
+                        forward(55)
+                        right(90)
+                        forward(20)
+                        right(85)
+                        forward(55)
+                        end_fill()
+                    
+                    def rightSock():
+                        myPosition(64,-79)
+                        fillcolor("#ffffff")
+                        begin_fill()
+                        right(90)
+                        circle(90,14)
+                        right(110)
+                        forward(23)
+                        right(90)
+                        forward(15)
+                        right(80)
+                        forward(21)
+                        end_fill()
+                    
+                    def rightShoe():
+                        myPosition(64,-108)
+                        fillcolor("#b5ae60")
+                        begin_fill()
+                        right(100)
+                        forward(56)
+                        left(160)
+                        forward(25)
+                        right(68)
+                        forward(17)
+                        left(90)
+                        circle(18,15)
+                        forward(5)
+                        left(75)
+                        forward(11)
+                        right(85)
+                        forward(20)
+                        left(45)
+                        circle(10,30)
+                        left(25)
+                        forward(5)
+                        end_fill()
+                    
+                    def myShirt():
+                        myPosition(-75,48)
+                        fillcolor("red")
+                        begin_fill()
+                        left(72)
+                        forward(185)
+                        left(87)
+                        forward(75)
+                        right(68)
+                        circle(20,8)
+                        circle(300,23)
+                        left(90)
+                        circle(35,17)
+                        right(38)
+                        circle(35,17)
+                        left(58)
+                        forward(75)
+                        right(12)
+                        forward(140)
+                        right(40)
+                        forward(93)
+                        left(120)
+                        circle(-20,65)
+                        left(75)
+                        forward(10)
+                        left(23)
+                        forward(88)
+                        #circle(-80,10)
+                        right(31)
+                        forward(87)
+                        right(180)
+                        forward(108)
+                        right(180)
+                        forward(104)
+                        circle(10,70)
+                        end_fill()
+                    
+                    def myHead():
+                        myPosition(-20,295)
+                        left(20)
+                        pensize(2)
+                        fillcolor('#fcc6a0')
+                        begin_fill()
+                        right(90)
+                        forward(40)
+                        right(90)
+                        circle(50,80)
+                        left(10)
+                        circle(50,80)
+                        left(2)
+                        circle(200,50)
+                    
+                        left(48)
+                        forward(60)
+                        #left(20)
+                        circle(45,60)
+                        right(5)
+                        circle(100,85)
+                        end_fill()
+                        fillcolor('black')
+                        begin_fill()
+                    
+                        pensize(2)
+                        right(170)
+                        circle(-100,165)
+                        right(78)
+                        forward(26)
+                        right(87)
+                        forward(55)
+                        circle(45,60)
+                        right(5)
+                        circle(100,85)
+                        end_fill()
+                    
+                        fillcolor('#fcc6a0')
+                        begin_fill()
+                        right(180)
+                        circle(-100,105)
+                        right(37)
+                        forward(49)
+                        pensize(2)
+                        left(130)
+                        forward(30)
+                        #right(5)
+                        circle(-10,70)
+                        right(50)
+                        #circle(10,10)
+                        forward(36)
+                        right(80)
+                        forward(50)
+                        pencolor('#fcc6a0')
+                        right(90)
+                        forward(30)
+                        
+                        end_fill()
+                    
+                    def rightHand():
+                        #left(35)
+                        myPosition(197,209)
+                        pencolor('black')
+                        fillcolor('#fcc6a0')
+                        begin_fill()
+                        right(45)
+                        forward(6)
+                        left(55)
+                        forward(20)
+                        circle(-5,70)
+                        right(100)
+                        forward(18)
+                        left(105)
+                        forward(18)
+                        circle(-5,70)
+                        right(100)
+                        forward(18)
+                        left(145)
+                        forward(15)
+                        circle(-5,70)
+                        right(100)
+                        forward(18)
+                    
+                        left(150)
+                        forward(13)
+                        circle(-5,70)
+                        right(100)
+                        forward(15)
+                    
+                        left(150)
+                        forward(10)
+                        circle(-5,70)
+                        right(100)
+                        forward(12)
+                        circle(60,10)
+                        left(45)
+                        forward(6)
+                        right(90)
+                        forward(10)
+                        end_fill()
+                    
+                    def leftHand():
+                        myPosition(-94,242)
+                        fillcolor('#fcc6a0')
+                        begin_fill()
+                        right(10)
+                        forward(6)
+                        left(90)
+                        penup()
+                        forward(12)
+                        pendown()
+                        left(90)
+                        forward(8)
+                        left(90)
+                        forward(12)
+                        end_fill()
+                    
+                    def myBis():
+                        myPosition(-103,291)
+                        right(90)
+                        fillcolor('#02d302')
+                        begin_fill()
+                        right(90)
+                        forward(55)
+                        left(80)
+                        forward(12)
+                        left(10)
+                        forward(17)
+                        left(10)
+                        forward(12)
+                        left(80)
+                        forward(55)
+                        left(80)
+                        forward(12)
+                        left(10)
+                        forward(17)
+                        left(10)
+                        forward(12)
+                        left(80)
+                        left(80)
+                        forward(12)
+                        left(10)
+                        forward(17)
+                        left(10)
+                        forward(12)
+                        end_fill()
+                        penup()
+                        right(100)
+                        forward(20)
+                        right(90)
+                        forward(14)
+                        pendown()
+                        pencolor('#9c5e4a')
+                        fillcolor('#9c5e4a')
+                        begin_fill()
+                        for i in range(5):
+                            forward(15)
+                            right(144)
+                        end_fill()
+                        penup()
+                        forward(27)
+                        left(90)
+                        forward(16)
+                        left(90)
+                        forward(7)
+                        pendown()
+                        fillcolor('#9c5e4a')
+                        begin_fill()
+                        for i in range(5):
+                            forward(10)
+                            right(144)
+                        end_fill()
+                        penup()
+                        forward(20)
+                        right(90)
+                        forward(5)
+                        pendown()
+                        fillcolor('#9c5e4a')
+                        begin_fill()
+                        for i in range(5):
+                            forward(10)
+                            right(144)
+                        end_fill()
+                        penup()
+                        right(180)
+                        forward(6)
+                        pendown()
+                        fillcolor('#9c5e4a')
+                        begin_fill()
+                        for i in range(5):
+                            forward(10)
+                            right(144)
+                        end_fill()
+                    
+                    def leftHand2():
+                        myPosition(-112,284)
+                        pencolor('black')
+                        fillcolor('#fcc6a0')
+                        begin_fill()
+                        right(180)
+                        forward(31)
+                        left(90)
+                        for i in range(2): 
+                            circle(4,90) 
+                            #circle(4//2,45)
+                        for i in range(3):
+                            right(180)
+                            for i in range(2): 
+                                circle(4,90)
+                        end_fill()
+                    
+                    def myMouth():
+                        myPosition(-25,200)
+                        left(65)
+                        fillcolor('#77332e')
+                        begin_fill()
+                        #circle(20)
+                        #forward(20)
+                        for i in range(2): 
+                            circle(25,90) 
+                            circle(25//2,90)
+                        end_fill()
+                    
+                    def myEyebrow(x,y):
+                        myPosition(x,y)
+                        pensize(18)
+                        right(150)
+                        forward(25)
+                        right(90)
+                        for i in range(1):
+                            right(45)
+                            dot(15)
+                        left(55)
+                        forward(25)
+                        for i in range(1):
+                            right(45)
+                            dot(15)
+                    
+                    def myEyelid(x,y):
+                        myPosition(x,y)
+                        pensize(2)
+                        left(170)
+                        circle(-23,180)
+                    
+                    def myallEyes1(x,y):
+                        myPosition(x,y)
+                        right(90)
+                        fillcolor('#000000')
+                        begin_fill()
+                        circle(18)
+                        end_fill()
+                        left(90)
+                        penup()
+                        forward(19)
+                        right(90)
+                        forward(7)
+                        pendown()
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        left(90)
+                        circle(9)
+                        end_fill()
+                    
+                    def myallEyes2(x,y):
+                        myPosition(x,y)
+                        right(90)
+                        fillcolor('#000000')
+                        begin_fill()
+                        circle(18)
+                        end_fill()
+                        left(90)
+                        penup()
+                        forward(19)
+                        right(90)
+                        forward(8)
+                        pendown()
+                        fillcolor('#ffffff')
+                        begin_fill()
+                        left(90)
+                        circle(9)
+                        end_fill()
+                    
+                    def myRobot():
+                        myPosition(155,-105)
+                        left(93)
+                        color('red')
+                        pensize(7)
+                    
+                        begin_fill()
+                        forward(50)
+                        left(90)
+                        forward(50)
+                        left(90)
+                        forward(50)
+                        left(90)
+                        forward(50)
+                        left(90)
+                        end_fill()
+                    
+                    
+                        color('white')
+                        penup()
+                        left(90)
+                        forward(30)
+                        right(90)
+                        forward(12)
+                        pendown()
+                        pensize(3)
+                        circle(5)
+                        penup()
+                        forward(25)
+                        pendown()
+                        circle(5)
+                    
+                        penup()
+                        right(90)
+                        forward(20)
+                        right(90)
+                        pendown()
+                    
+                        begin_fill()
+                        forward(23)
+                        right(90)
+                        forward(7)
+                        right(90)
+                        forward(23)
+                        right(90)
+                        forward(7)
+                        right(90)
+                        end_fill()
+                    
+                        penup()
+                        forward(25)
+                        right(90)
+                        forward(35)
+                        pendown()
+                    
+                        color('red')
+                        forward(30)
+                        penup()
+                        right(90)
+                        pendown()
+                        begin_fill()
+                        circle(5)
+                        end_fill()
+                    
+                    def allLegs():
+                        leftLeg()
+                        leftSock()
+                        leftShoe()
+                        rightLeg()
+                        rightSock()
+                        rightShoe()
+                    def allHands():
+                        rightHand()
+                        leftHand()
+                        myBis()
+                        leftHand2()
+                    def allEyebrows():
+                        myEyebrow(-8,300)
+                        right(90)
+                        myEyebrow(72,300)
+                        myEyelid(-9,270)
+                        left(15)
+                        myEyelid(68,265)    
+                    def allEyes():
+                        myallEyes1(17,275)
+                        myallEyes2(95,270)
+                    ankur()
+                    allLegs()
+                    myShirt()
+                    myHead()
+                    allHands()
+                    myMouth()
+                    allEyebrows()
+                    allEyes()
+                    myRobot()
+                    ht()
+                    done()
+            </code>
+        </pre>
+        </section>
+        <section>
+            <h2> <span> Girl </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/4IkBz_w7Y38" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python">  <code>
+                    <h3>Source Code</h3>
+                    #ANIME GIRL
+                    import turtle as te
+                    
+                    import time
+                    
+                    WriteStep = 15 # Sampling times of Bessel function
+                    
+                    Speed = 5
+                    
+                    Width = 600 # Interface width
+                    
+                    Height = 500 # Interface height
+                    
+                    Xh = 0 # Record the handle of the previous Bessel function
+                    
+                    Yh = 0
+                    
+                    
+                    
+                    
+                    
+                    def Bezier(p1, p2, t): # First order Bessel function
+                    
+                        return p1 * (1 - t) + p2 * t
+                    
+                    
+                    
+                    
+                    
+                    def Bezier_2(x1, y1, x2, y2, x3, y3): # Second-order Bessel function
+                    
+                        te.goto(x1, y1)
+                    
+                        te.pendown()
+                    
+                        for t in range(0, WriteStep + 1):
+                    
+                            x = Bezier(Bezier(x1, x2, t / WriteStep),
+                    
+                                       Bezier(x2, x3, t / WriteStep), t / WriteStep)
+                    
+                            y = Bezier(Bezier(y1, y2, t / WriteStep),
+                    
+                                       Bezier(y2, y3, t / WriteStep), t / WriteStep)
+                    
+                            te.goto(x, y)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def Bezier_3(x1, y1, x2, y2, x3, y3, x4, y4): # Third-order Bessel function
+                    
+                        x1 = -Width / 2 + x1
+                    
+                        y1 = Height / 2 - y1
+                    
+                        x2 = -Width / 2 + x2
+                    
+                        y2 = Height / 2 - y2
+                    
+                        x3 = -Width / 2 + x3
+                    
+                        y3 = Height / 2 - y3
+                    
+                        x4 = -Width / 2 + x4
+                    
+                        y4 = Height / 2 - y4 # Coordinate transformation
+                    
+                        te.goto(x1, y1)
+                    
+                        te.pendown()
+                    
+                        for t in range(0, WriteStep + 1):
+                    
+                            x = Bezier(Bezier(Bezier(x1, x2, t / WriteStep), Bezier(x2, x3, t / WriteStep), t / WriteStep),
+                    
+                                       Bezier(Bezier(x2, x3, t / WriteStep), Bezier(x3, x4, t / WriteStep), t / WriteStep), t / WriteStep)
+                    
+                            y = Bezier(Bezier(Bezier(y1, y2, t / WriteStep), Bezier(y2, y3, t / WriteStep), t / WriteStep),
+                    
+                                       Bezier(Bezier(y2, y3, t / WriteStep), Bezier(y3, y4, t / WriteStep), t / WriteStep), t / WriteStep)
+                    
+                            te.goto(x, y)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def Moveto(x, y): # Move to svg coordinates (x, y)
+                    
+                        te.penup()
+                    
+                        te.goto(-Width / 2 + x, Height / 2 - y)
+                    
+                    
+                    
+                    
+                    
+                    def line(x1, y1, x2, y2): # Connect two points under svg coordinates
+                    
+                        te.penup()
+                    
+                        te.goto(-Width / 2 + x1, Height / 2 - y1)
+                    
+                        te.pendown()
+                    
+                        te.goto(-Width / 2 + x2, Height / 2 - y2)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def lineto(dx, dy): # Connect the current point and the point with relative coordinates (dx, dy)
+                    
+                        te.pendown()
+                    
+                        te.goto(te.xcor() + dx, te.ycor() - dy)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def Lineto(x, y): # Connect the current point and svg coordinates (x, y)
+                    
+                        te.pendown()
+                    
+                        te.goto(-Width / 2 + x, Height / 2 - y)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def Horizontal(x): # Make the horizontal line with the abscissa x in the svg coordinates
+                    
+                        te.pendown()
+                    
+                        te.setx(x - Width / 2)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def horizontal(dx): # Make the horizontal line with relative abscissa dx
+                    
+                        te.seth(0)
+                    
+                        te.pendown()
+                    
+                        te.fd(dx)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def vertical(dy): # Make the vertical line with the relative ordinate dy
+                    
+                        te.seth(-90)
+                    
+                        te.pendown()
+                    
+                        te.fd(dy)
+                    
+                        te.penup()
+                    
+                        te.seth(0)
+                    
+                    
+                    
+                    
+                    
+                    def polyline(x1, y1, x2, y2, x3, y3): # Make a polyline under svg coordinates
+                    
+                        te.penup()
+                    
+                        te.goto(-Width / 2 + x1, Height / 2 - y1)
+                    
+                        te.pendown()
+                    
+                        te.goto(-Width / 2 + x2, Height / 2 - y2)
+                    
+                        te.goto(-Width / 2 + x3, Height / 2 - y3)
+                    
+                        te.penup()
+                    
+                    
+                    
+                    
+                    
+                    def Curveto(x1, y1, x2, y2, x, y): # Third-order Bezier curve to (x, y)
+                    
+                        te.penup()
+                    
+                        X_now = te.xcor() + Width / 2
+                    
+                        Y_now = Height / 2 - te.ycor()
+                    
+                        Bezier_3(X_now, Y_now, x1, y1, x2, y2, x, y)
+                    
+                        global Xh
+                    
+                        global Yh
+                    
+                        Xh = x - x2
+                    
+                        Yh = y - y2
+                    
+                    
+                    
+                    
+                    
+                    def curveto_r(x1, y1, x2, y2, x, y): # Third-order Bezier curve to relative coordinates (x, y)
+                    
+                        te.penup()
+                    
+                        X_now = te.xcor() + Width / 2
+                    
+                        Y_now = Height / 2 - te.ycor()
+                    
+                        Bezier_3(X_now, Y_now, X_now + x1, Y_now + y1,
+                    
+                                 X_now + x2, Y_now + y2, X_now + x, Y_now + y)
+                    
+                        global Xh
+                    
+                        global Yh
+                    
+                        Xh = x - x2
+                    
+                        Yh = y - y2
+                    
+                    
+                    
+                    
+                    
+                    def Smooth(x2, y2, x, y): # Smooth the third-order Bezier curve to (x, y)
+                    
+                        global Xh
+                    
+                        global Yh
+                    
+                        te.penup()
+                    
+                        X_now = te.xcor() + Width / 2
+                    
+                        Y_now = Height / 2 - te.ycor()
+                    
+                        Bezier_3(X_now, Y_now, X_now + Xh, Y_now + Yh, x2, y2, x, y)
+                    
+                        Xh = x - x2
+                    
+                        Yh = y - y2
+                    
+                    
+                    
+                    
+                    
+                    def smooth_r(x2, y2, x, y): # Smooth the third-order Bezier curve to relative coordinates (x, y)
+                    
+                        global Xh
+                    
+                        global Yh
+                    
+                        te.penup()
+                    
+                        X_now = te.xcor() + Width / 2
+                    
+                        Y_now = Height / 2 - te.ycor()
+                    
+                        Bezier_3(X_now, Y_now, X_now + Xh, Y_now + Yh,
+                    
+                                 X_now + x2, Y_now + y2, X_now + x, Y_now + y)
+                    
+                        Xh = x - x2
+                    
+                        Yh = y - y2
+                    
+                    
+                    
+                    te.tracer(10)
+                    
+                    te.setup(Width, Height, 0, 0)
+                    
+                    te.pensize(1)
+                    
+                    te.speed(Speed)
+                    
+                    te.penup()
+                    
+                    
+                    
+                    # Layer_2
+                    
+                    time.sleep(20)
+                    
+                    te.color("black", "#F2F2F2") # Coat
+                    
+                    Moveto(61, 462)
+                    
+                    te.begin_fill()
+                    
+                    smooth_r(12, -41, 27, -58)
+                    
+                    curveto_r(-6, -36, 6, -118, 9, -132)
+                    
+                    curveto_r(-15, -27, -23, -51, -26, -74)
+                    
+                    curveto_r(4, -66, 38, -105, 65, -149)
+                    
+                    Horizontal(486)
+                    
+                    curveto_r(12, 24, 40, 99, 33, 114)
+                    
+                    curveto_r(39, 82, 55, 129, 39, 144)
+                    
+                    smooth_r(-31, 23, -39, 28)
+                    
+                    smooth_r(-12, 37, -12, 37)
+                    
+                    lineto(50, 92)
+                    
+                    Horizontal(445)
+                    
+                    smooth_r(-29, -38, -31, -46)
+                    
+                    smooth_r(78, -107, 72, -119)
+                    
+                    Smooth(355, 178, 340, 176)
+                    
+                    Smooth(272, 63, 264, 64)
+                    
+                    smooth_r(-29, 67, -27, 73)
+                    
+                    Curveto(99, 292, 174, 428, 173, 439)
+                    
+                    smooth_r(-8, 23, -8, 23)
+                    
+                    Lineto(61, 462)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(60.5, 461.5) # Shadow
+                    
+                    te.color("black", "#D3DFF0")
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(0, 0, 17, -42, 27, -59)
+                    
+                    curveto_r(-6, -33, 6, -128, 10, -133)
+                    
+                    curveto_r(-15, -10, -27, -66, -27.285, -75)
+                    
+                    te.pencolor("#D3DFF0")
+                    
+                    curveto_r(12.285, 11, 82.963, 156, 82.963, 156)
+                    
+                    te.pencolor("black")
+                    
+                    smooth_r(12.322, 75, 19.322, 86)
+                    
+                    curveto_r(-1, 11, -8, 25, -8, 25)
+                    
+                    Horizontal(60.5)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(444.5, 464)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(0, 0, -29, -36, -31, -46)
+                    
+                    smooth_r(53.59, -82.337, 53.59, -82.337)
+                    
+                    te.pencolor("#D3DFF0")
+                    
+                    smooth_r(86.41, -47.663, 96.072, -54.85)
+                    
+                    Curveto(563.5, 297.5, 570.5, 299.5, 518.5, 334)
+                    
+                    te.pencolor("black")
+                    
+                    curveto_r(-2, 16, -12, 33, -12, 37)
+                    
+                    smooth_r(50, 92, 50, 93)
+                    
+                    Horizontal(444.5)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(195, 49)
+                    
+                    te.begin_fill()
+                    
+                    te.pencolor("#D3DFF0")
+                    
+                    polyline(195, 49, 175.5, 106.5, 202.522, 49)
+                    
+                    te.pencolor("black")
+                    
+                    Horizontal(195)
+                    
+                    te.pencolor("#D3DFF0")
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(327.997, 49)
+                    
+                    te.begin_fill()
+                    
+                    te.pencolor("#D3DFF0")
+                    
+                    curveto_r(0, 0, 11.503, 121.087, 13.503, 128.087)
+                    
+                    curveto_r(11, 2, 54, 37, 54, 37)
+                    
+                    lineto(-40, -165.087)
+                    
+                    te.pencolor("black")
+                    
+                    Horizontal(327.997)
+                    
+                    te.pencolor("#D3DFF0")
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    te.pencolor("black")
+                    
+                    line(94.5, 397.5, 107.5, 373.5) # Wrinkles
+                    
+                    line(122.5, 317.5, 95.875, 274.699)
+                    
+                    line(122.5, 341.5, 141.5, 402.5)
+                    
+                    line(141.5, 409.5, 153.5, 431.5)
+                    
+                    # line(328,47.712,344,175.977)
+                    
+                    line(340.023, 49, 360.5, 144)
+                    
+                    # line(353.5,47.5,395.5,208.5)
+                    
+                    line(478.5, 95.5, 518.5, 161.5)
+                    
+                    line(518.5, 332.5, 460.5, 359.5)
+                    
+                    polyline(506.5, 369.5, 493.5, 402.5, 502.5, 443.5)
+                    
+                    Moveto(530, 429)
+                    
+                    curveto_r(4, 16, -5, 33, -5, 33)
+                    
+                    
+                    
+                    # Layer_3
+                    
+                    te.color("black", "#2b1d2a") # Inside the jacket
+                    
+                    Moveto(225, 462)
+                    
+                    te.begin_fill()
+                    
+                    Horizontal(165)
+                    
+                    smooth_r(9, -15, 8, -25)
+                    
+                    curveto_r(-47, -126, 6, -212, 12, -225)
+                    
+                    Curveto(185, 305, 202, 428, 225, 462)
+                    
+                    Lineto(225, 462)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(390, 462)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(10, -23, 34, -180, 35, -222) # !!!227
+                    
+                    curveto_r(7, 4, 54, 45, 61, 61) # 61
+                    
+                    smooth_r(-73, 101, -72, 118)
+                    
+                    curveto_r(5, 15, 31, 46, 31, 45)
+                    
+                    Lineto(390, 462)
+                    
+                    te.end_fill()
+                    
+                    # Layer_4
+                    
+                    te.color("black", "#2b1d29") # Inside the jacket
+                    
+                    Moveto(225, 462)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-28, -50, -40, -166, -40, -250)
+                    
+                    curveto_r(6, 51, -6, 87, 45, 106)
+                    
+                    smooth_r(64, 27, 89, 24)
+                    
+                    smooth_r(49, -18, 56, -20)
+                    
+                    smooth_r(50, -10, 51, -85)
+                    
+                    curveto_r(0, 29, -25, 201, -36, 225)
+                    
+                    Lineto(225, 462)
+                    
+                    te.end_fill()
+                    
+                    # Layer_5
+                    
+                    te.color("black", "#3D3D3D") # Clothes
+                    
+                    Moveto(225, 462)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-5, -5, -22, -53, -23, -70)
+                    
+                    lineto(32, -13)
+                    
+                    curveto_r(3, -25, 6, -28, 12, -36)
+                    
+                    smooth_r(13, -12, 16, -12)
+                    
+                    vertical(-2)
+                    
+                    curveto_r(45, 20, 64, 14, 94, 1)
+                    
+                    vertical(2)
+                    
+                    curveto_r(8, -2, 15, 2, 17, 4)
+                    
+                    smooth_r(0, 6, -2, 9)
+                    
+                    curveto_r(10, 10, 10, 29, 11, 33)
+                    
+                    smooth_r(23, 4, 25, 6)
+                    
+                    smooth_r(-17, 83, -17, 78)
+                    
+                    Lineto(225, 462)
+                    
+                    te.end_fill()
+                    
+                    # Layer_6
+                    
+                    te.color("black", "#968281") # Neck
+                    
+                    Moveto(262, 329)
+                    
+                    te.begin_fill()
+                    
+                    vertical(17)
+                    
+                    curveto_r(1, 2, 44, 14, 45, 15)
+                    
+                    smooth_r(3, 12, 3, 12)
+                    
+                    horizontal(3)
+                    
+                    vertical(-5)
+                    
+                    curveto_r(1, -3, 4, -6, 5, -7)
+                    
+                    lineto(36, -14)
+                    
+                    curveto_r(1, -1, 3, -16, 2, -17)
+                    
+                    Curveto(318, 348, 296, 344, 262, 329)
+                    
+                    te.end_fill()
+                    
+                    # Layer_8
+                    
+                    te.color("black", "#E7F1FF") # White folds
+                    
+                    Moveto(225, 462)
+                    
+                    te.begin_fill()
+                    
+                    lineto(-3, -5) # -3,-3,-3,-5
+                    
+                    curveto_r(0, -2, 4, -4, 5, -6)
+                    
+                    smooth_r(16, 3, 19, -8)
+                    
+                    smooth_r(0, -7, 0, -11)
+                    
+                    smooth_r(5, -8, 9, -5)
+                    
+                    smooth_r(19, -8, 19, -11)
+                    
+                    smooth_r(6, -7, 6, -7)
+                    
+                    smooth_r(7, -2, 9, -4)
+                    
+                    lineto(41, -2)
+                    
+                    lineto(12, 9)
+                    
+                    smooth_r(3, 15, 7, 18)
+                    
+                    smooth_r(15, 4, 17, 4)
+                    
+                    smooth_r(4, -4, 6, -4)
+                    
+                    smooth_r(6, 4, 5, 9)
+                    
+                    smooth_r(0, 9, 0, 9)
+                    
+                    smooth_r(1, 7, 7, 6)
+                    
+                    smooth_r(8, 0, 8, 0)
+                    
+                    lineto(-2, 8)
+                    
+                    Lineto(225, 462)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    te.pensize(2)
+                    
+                    Moveto(240, 450)
+                    
+                    smooth_r(0, 9, 3, 12)
+                    
+                    Moveto(372, 462)
+                    
+                    curveto_r(-2, -4, -5, -29, -7, -28)
+                    
+                    te.pensize(1)
+                    
+                    # Layer_7
+                    
+                    te.color("black", "#A2B8D6") # Collar
+                    
+                    Moveto(262, 331)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(0, 8, -1, 13, 0, 15)
+                    
+                    smooth_r(43, 14, 45, 15)
+                    
+                    lineto(3, 12)
+                    
+                    horizontal(3)
+                    
+                    smooth_r(-1, -3, 0, -5)
+                    
+                    lineto(5, -7)
+                    
+                    lineto(36, -14)
+                    
+                    curveto_r(1, -1, 2, -12, 2, -15)
+                    
+                    smooth_r(25, -2, 15, 13)
+                    
+                    curveto_r(-2, 4, -7, 29, -7, 32)
+                    
+                    smooth_r(-35, 19, -41, 22)
+                    
+                    smooth_r(-9, 14, -12, 14)
+                    
+                    smooth_r(-7, -12, -14, -15)
+                    
+                    curveto_r(-19, -2, -41, -25, -41, -25)
+                    
+                    smooth_r(-10, -26, -10, -30)
+                    
+                    Smooth(255, 332, 262, 331)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(262, 346)
+                    
+                    lineto(-12, -6)
+                    
+                    Moveto(369, 333)
+                    
+                    curveto_r(2, 4, -6, 10, -15, 14)
+                    
+                    # Layer_9
+                    
+                    te.color("black", "#151515") # Tie
+                    
+                    Moveto(247, 358)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-5, 3, -8, 20, -6, 23)
+                    
+                    curveto_r(25, 21, 50, 17, 50, 17)
+                    
+                    lineto(-23, 64)
+                    
+                    horizontal(22)
+                    
+                    smooth_r(1, -13, 2, -16)
+                    
+                    lineto(13, -50)
+                    
+                    curveto_r(2, 2, 7, 3, 10, 1)
+                    
+                    smooth_r(18, 65, 18, 65)
+                    
+                    horizontal(19)
+                    
+                    lineto(-24, -65)
+                    
+                    curveto_r(21, 5, 39, -10, 44, -13)
+                    
+                    curveto_r(5, -20, 1, -21, 0, -24)
+                    
+                    curveto_r(-18, -2, -49, 15, -52, 17)
+                    
+                    smooth_r(-11, -3, -15, -1)
+                    
+                    Smooth(252, 356, 247, 358)
+                    
+                    te.end_fill()
+                    
+                    # Layer_10
+                    
+                    te.color("black", "#A2B8D6") # Collar (through bow tie)
+                    
+                    Moveto(297, 387)
+                    
+                    te.begin_fill()
+                    
+                    lineto(-11, 6)
+                    
+                    curveto_r(-1, 0, -20, -7, -30, -19)
+                    
+                    Curveto(259, 373, 297, 385, 297, 387)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(323, 384)
+                    
+                    te.begin_fill()
+                    
+                    lineto(8, 7)
+                    
+                    lineto(30, -14)
+                    
+                    curveto_r(1, -1, 5, -6, 4, -7)
+                    
+                    Smooth(329, 379, 323, 384)
+                    
+                    te.end_fill()
+                    
+                    # Layer_11
+                    
+                    te.color("black", "#F3EEEB") # Face
+                    
+                    Moveto(185, 212)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(4, -9, 46, -77, 52, -75)
+                    
+                    curveto_r(-2, -17, 19, -68, 27, -73)
+                    
+                    curveto_r(16, 15, 71, 108, 76, 112)
+                    
+                    smooth_r(76, 53, 86, 60)
+                    
+                    curveto_r(0, 65, -27, 75, -31, 76)
+                    
+                    curveto_r(-50, 28, -70, 30, -85, 30)
+                    
+                    smooth_r(-77, -22, -86, -26)
+                    
+                    Curveto(180, 302, 186, 228, 185, 212)
+                    
+                    te.end_fill()
+                    
+                    # Layer_12
+                    
+                    te.color("black", "#2B1D29") # Hair
+                    
+                    Moveto(189, 202)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-1, 22, 19, 51, 19, 51)
+                    
+                    smooth_r(-10, -42, 7, -92)
+                    
+                    Curveto(212, 168, 196, 189, 189, 202)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(221, 155)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-2, 6, 5, 48, 5, 48)
+                    
+                    smooth_r(18, -28, 20, -48)
+                    
+                    curveto_r(-5, 24, 4, 43, 7, 50)
+                    
+                    curveto_r(-10, -49, 3, -72, 13, -106)
+                    
+                    curveto_r(-2, -7, -3, -32, -3, -35)
+                    
+                    curveto_r(-17, 18, -27, 71, -27, 71)
+                    
+                    Lineto(221, 155)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(264, 64)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-4, 5, 14, 100, 14, 100)
+                    
+                    smooth_r(-6, -79, -5, -85)
+                    
+                    curveto_r(0, 98, 49, 139, 49, 139)
+                    
+                    smooth_r(8, -50, 3, -65)
+                    
+                    Smooth(272, 64, 264, 64)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(342, 176)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-1, 27, -10, 57, -10, 57)
+                    
+                    smooth_r(20, -33, 17, -54)
+                    
+                    Lineto(342, 176)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    te.penup()
+                    
+                    te.begin_fill()
+                    
+                    polyline(349, 180, 353, 203, 361, 203)
+                    
+                    polyline(361, 203, 362, 188, 349, 180)
+                    
+                    te.end_fill()
+                    
+                    # Layer_13
+                    
+                    te.pensize(2)
+                    
+                    Moveto(210, 180) # Eyebrows
+                    
+                    curveto_r(5, -4, 63, 9, 63, 14)
+                    
+                    Moveto(338, 193)
+                    
+                    curveto_r(0, -3, 18, -6, 18, -6)
+                    
+                    te.pensize(1)
+                    
+                    # Layer_14
+                    
+                    te.color("black", "#D1D1D1") # Eye 1
+                    
+                    te.pensize(2)
+                    
+                    Moveto(206, 212)
+                    
+                    te.begin_fill()
+                    
+                    lineto(15, -7)
+                    
+                    curveto_r(4, -1, 26, -2, 30, 0)
+                    
+                    smooth_r(10, 3, 12, 7)
+                    
+                    te.pencolor("#D1D1D1")
+                    
+                    te.pensize(1)
+                    
+                    smooth_r(2, 27, -1, 30)
+                    
+                    smooth_r(-39, 5, -44, 1)
+                    
+                    Smooth(206, 212, 206, 212)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(384, 204)
+                    
+                    te.begin_fill()
+                    
+                    te.pencolor("black")
+                    
+                    te.pensize(2)
+                    
+                    curveto_r(-3, -1, -18, -1, -28, 1)
+                    
+                    smooth_r(-9, 6, -10, 9)
+                    
+                    te.pencolor("#D1D1D1")
+                    
+                    te.pensize(1)
+                    
+                    smooth_r(3, 18, 6, 23)
+                    
+                    smooth_r(38, 6, 40, 4)
+                    
+                    smooth_r(10, -9, 13, -22)
+                    
+                    te.pencolor("black")
+                    
+                    te.pensize(2)
+                    
+                    Lineto(384, 204)
+                    
+                    te.end_fill()
+                    
+                    # Layer_15
+                    
+                    te.color("#0C1631", "#0C1631") # Eye 2
+                    
+                    te.pensize(1)
+                    
+                    Moveto(216, 206)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-1, 5, 0, 26, 7, 35)
+                    
+                    smooth_r(30, 2, 33, 0)
+                    
+                    smooth_r(5, -31, 2, -34)
+                    
+                    Smooth(219, 203, 216, 206)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(354, 207)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-2, 1, 2, 29, 4, 31)
+                    
+                    smooth_r(30, 3, 33, 1)
+                    
+                    smooth_r(6, -24, 4, -27)
+                    
+                    lineto(-11, -8)
+                    
+                    Curveto(382, 204, 357, 206, 354, 207)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    # Layer_17
+                    
+                    te.color("#F5F5F5", "#F5F5F5") # Eye 3
+                    
+                    Moveto(253, 211)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-3, 0, -8, 8, 1, 10)
+                    
+                    Smooth(258, 210, 253, 211)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(392, 209)
+                    
+                    te.begin_fill()
+                    
+                    lineto(4, 3)
+                    
+                    vertical(4)
+                    
+                    lineto(-4, 2)
+                    
+                    Curveto(386, 214, 392, 209, 392, 209)
+                    
+                    te.end_fill()
+                    
+                    # Layer_18
+                    
+                    te.color("#352F53", "#352F53") # Eye 4
+                    
+                    Moveto(219, 229)
+                    
+                    te.begin_fill()
+                    
+                    smooth_r(2, -5, 6, -4)
+                    
+                    smooth_r(18, 13, 27, 1)
+                    
+                    curveto_r(3, 0, 5, 3, 5, 3)
+                    
+                    vertical(13)
+                    
+                    Horizontal(224)
+                    
+                    Lineto(219, 229)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(357, 227)
+                    
+                    te.begin_fill()
+                    
+                    smooth_r(4, -6, 10, -2)
+                    
+                    smooth_r(10, 13, 19, 1)
+                    
+                    curveto_r(6, 0, 8, 6, 8, 6)
+                    
+                    lineto(-2, 9)
+                    
+                    curveto_r(-12, 3, -29, 0, -32, -2)
+                    
+                    Smooth(357, 227, 357, 227)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    # Layer_19
+                    
+                    te.color("#9A90CB", "#9A90CB") # Eye 5
+                    
+                    Moveto(227, 231)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(-6, 0, -5, 5, -3, 8)
+                    
+                    smooth_r(24, 2, 27, 0)
+                    
+                    smooth_r(0, -8, -1, -8)
+                    
+                    Smooth(234, 231, 227, 231)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    Moveto(361, 227)
+                    
+                    te.begin_fill()
+                    
+                    curveto_r(2, 18, 26, 14, 30, 6)
+                    
+                    smooth_r(-1, -3, -2, -4)
+                    
+                    smooth_r(-15, 9, -24, -4)
+                    
+                    Curveto(363, 224, 361, 225, 361, 227)
+                    
+                    te.end_fill()
+                    
+                    
+                    
+                    # Layer_16
+                    
+                    te.pencolor("black") # Eyes (lines)
+                    
+                    te.pensize(3)
+                    
+                    # Moveto(206,213)
+                    
+                    # lineto(14,-8)
+                    
+                    # curveto_r(3,-1,30,0,33,1)
+                    
+                    # lineto(10,6)
+                    
+                    Moveto(225, 215)
+                    
+                    curveto_r(10, 28, 22, 16, 24, 6)
+                    
+                    Moveto(365, 219)
+                    
+                    curveto_r(4, 14, 18, 24, 22, -3)
+                    
+                    te.pensize(2)
+                    
+                    line(240.5, 207.5, 227.5, 211.5)
+                    
+                    line(245.5, 209.5, 227.5, 214.5)
+                    
+                    line(247.5, 211.5, 227.5, 217.5)
+                    
+                    line(247.5, 214.5, 229.5, 220.5)
+                    
+                    line(247.5, 218.5, 230.5, 223.5)
+                    
+                    line(246.5, 222.5, 232.5, 226.5)
+                    
+                    line(244.5, 225.5, 234.5, 228.5)
+                    
+                    
+                    
+                    line(377.5, 207.5, 367.5, 210.5)
+                    
+                    line(384.5, 207.5, 366.5, 212.5)
+                    
+                    line(385.5, 210.5, 366.5, 215.5)
+                    
+                    line(384.5, 213.5, 366.5, 218.5)
+                    
+                    line(384.5, 215.5, 367.5, 220.5)
+                    
+                    line(384.5, 218.5, 368.5, 223.5)
+                    
+                    # line(383.5,220.5,368.5,225.5)
+                    
+                    line(382.5, 223.5, 370.5, 227.5)
+                    
+                    # line(381.5,226.5,373.5,229.5)
+                    
+                    # Layer_20
+                    
+                    te.pencolor("black")
+                    
+                    Moveto(309, 270) # Nose, mouth
+                    
+                    curveto_r(0, 0, 4, 7, 1, 9)
+                    
+                    line(296.5, 307.5, 303.5, 307.5)
+                    
+                    Moveto(315, 307)
+                    
+                    smooth_r(10, -1, 10, 2)
+                    
+                    
+                    
+                    te.penup()
+                    
+                    te.hideturtle()
+                    
+                    te.update()
+                    
+                    te.done()
+            </code>
+        </pre>
+        </section>
+        <section>
+            <h2> <span> GOJO </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/giFPJvF_GZ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python">  <code>
+                    <h3>Source Code</h3>
+                    from sketchpy import library
+                    myObject = library.gojo()
+                    myObject.draw()
+            </code>
+        </pre>
+        </section>
+        <section>
+            <h2> <span> Dragon Ball </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/42rK8qwylWU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python">  <code>
+                    <h3>Source Code</h3>
+                    #Draw Goku Using Python Turtle
+
+                    #importing turtle module
+                    import turtle
+                    
+                    #setting the background color
+                    turtle.bgcolor('#f0833a')
+                    
+                    # Define title of program
+                    turtle.title("Copy Assignment Turtle")
+                    
+                    #Create a turtle screen
+                    screen= turtle.Screen()
+                    #Define height and width of screen
+                    screen.setup(1200,600)
+                    
+                    
+                    goku_hair = turtle.Turtle()
+                    goku_hair.speed(20)
+                    goku_hair.penup()
+                    goku_hair.goto(-270,10)
+                    start=goku_hair.pos()
+                    goku_hair.pendown()
+                    goku_hair.begin_fill()
+                    goku_hair.right(-180)
+                    goku_hair.circle(200,extent=45)
+                    goku_hair.rt(160)
+                    goku_hair.circle(-200,extent=45)
+                    goku_hair.lt(115)
+                    goku_hair.circle(200,extent=45)
+                    goku_hair.rt(160)
+                    goku_hair.circle(-200,extent=60)
+                    goku_hair.rt(205)
+                    goku_hair.circle(200,extent=85)
+                    goku_hair.rt(155)
+                    goku_hair.circle(-200,extent=110)
+                    goku_hair.lt(90)
+                    goku_hair.circle(-50,extent=70)
+                    goku_hair.lt(130)
+                    goku_hair.circle(-200,extent=75)
+                    goku_hair.rt(150)
+                    goku_hair.circle(200,extent=65)
+                    goku_hair.lt(125)
+                    goku_hair.circle(-200,extent=45)
+                    goku_hair.rt(160)
+                    goku_hair.circle(200,extent=45)
+                    goku_hair.lt(80)
+                    goku_hair.circle(-200,extent=35)
+                    goku_hair.rt(160)
+                    goku_hair.circle(200,extent=48)
+                    goku_hair.penup()
+                    goku_hair.goto(-270,10)
+                    goku_hair.pendown()
+                    goku_hair.rt(120)
+                    goku_hair.circle(-200,extent=30)
+                    goku_hair.rt(135)
+                    goku_hair.circle(200,extent=20)
+                    goku_hair.lt(145)
+                    goku_hair.circle(-200,extent=30)
+                    goku_hair.rt(150)
+                    goku_hair.circle(200,extent=25)
+                    goku_hair.lt(165)
+                    goku_hair.circle(-200,extent=30)
+                    goku_hair.rt(120)
+                    goku_hair.circle(-200,extent=15)
+                    goku_hair.lt(120)
+                    goku_hair.circle(200,extent=20)
+                    goku_hair.rt(160)
+                    goku_hair.circle(200,extent=24)
+                    
+                    goku_hair.hideturtle()
+                    
+                    #Code for drawing right eye of Goku
+                    goku_reye = turtle.Turtle()
+                    goku_reye.speed(20)
+                    goku_reye.penup()
+                    goku_reye.goto(-180,-20)
+                    goku_reye.pendown()
+                    goku_reye.right(125)
+                    goku_reye.forward(5)
+                    e = goku_reye.pos()
+                    goku_reye.rt(90)
+                    goku_reye.begin_fill()
+                    goku_reye.fd(60)
+                    goku_reye.lt(70)
+                    goku_reye.fd(10)
+                    goku_reye.lt(115)
+                    goku_reye.fd(17)
+                    e1 = goku_reye.pos()
+                    goku_reye.fd(40)
+                    goku_reye.goto(e)
+                    goku_reye.end_fill()
+                    goku_reye.goto(e1)
+                    goku_reye.color("black","white")
+                    goku_reye.begin_fill()
+                    goku_reye.rt(70)
+                    goku_reye.fd(17)
+                    goku_reye.lt(85)
+                    goku_reye.fd(37)
+                    goku_reye.end_fill()
+                    goku_reye.begin_fill()
+                    goku_reye.color("black")
+                    goku_reye.circle(5)
+                    goku_reye.end_fill()
+                    goku_reye.hideturtle()
+                    
+                    #Code for drawing left eye of Goku
+                    goku_leye = turtle.Turtle()
+                    goku_leye.speed(20)
+                    goku_leye.penup()
+                    goku_leye.goto(-150,-20)
+                    goku_leye.pendown()
+                    goku_leye.left(125)
+                    goku_leye.backward(5)
+                    e = goku_leye.pos()
+                    goku_leye.lt(90)
+                    goku_leye.begin_fill()
+                    goku_leye.bk(60)
+                    goku_leye.rt(70)
+                    goku_leye.bk(10)
+                    goku_leye.rt(115)
+                    goku_leye.bk(17)
+                    e1 = goku_leye.pos()
+                    goku_leye.bk(40)
+                    goku_leye.goto(e)
+                    goku_leye.end_fill()
+                    goku_leye.goto(e1)
+                    goku_leye.color("black","white")
+                    goku_leye.begin_fill()
+                    goku_leye.lt(70)
+                    goku_leye.bk(17)
+                    goku_leye.rt(85)
+                    goku_leye.bk(37)
+                    goku_leye.end_fill()
+                    goku_leye.begin_fill()
+                    goku_leye.color("black")
+                    goku_leye.circle(5)
+                    goku_leye.end_fill()
+                    goku_leye.hideturtle()
+                    
+                    
+                    #face of goku
+                    goku_face = turtle.Turtle()
+                    goku_face.speed(20)
+                    goku_face.penup()
+                    goku_face.goto(-270,10)
+                    goku_face.pendown()
+                    goku_face.rt(65)
+                    goku_face.fd(100)
+                    goku_face.left(30)
+                    goku_face.fd(80)
+                    goku_face.lt(70)
+                    goku_face.fd(80)
+                    goku_face.left(30)
+                    goku_face.fd(109)
+                    goku_face.hideturtle()
+                    
+                    #code for nose of goku
+                    goku_nose = turtle.Turtle()
+                    goku_nose.speed(20)
+                    goku_nose.penup()
+                    goku_nose.goto(-165,-50)
+                    goku_nose.pendown()
+                    goku_nose.right(90)
+                    goku_nose.fd(15)
+                    goku_nose.hideturtle()
+                    
+                    #Code for smile of goku
+                    goku_smile=turtle.Turtle()
+                    goku_smile.speed(20)
+                    goku_smile.penup()
+                    goku_smile.goto(-185,-75)
+                    goku_smile.pendown()
+                    goku_smile.rt(55)
+                    goku_smile.fd(10)
+                    goku_smile.lt(60)
+                    goku_smile.fd(30)
+                    goku_smile.lt(60)
+                    goku_smile.fd(10)
+                    goku_smile.penup()
+                    goku_smile.goto(-170,-90)
+                    goku_smile.pendown()
+                    goku_smile.rt(60)
+                    goku_smile.fd(15)
+                    goku_smile.hideturtle()
+                    
+                    #code for the sword
+                    
+                    #go to starting position
+                    goku_sword = turtle.Turtle()
+                    goku_sword.speed(20)
+                    goku_sword.penup()
+                    goku_sword.goto(270,-80)
+                    goku_sword.right(90)
+                    goku_sword.forward(150)
+                    goku_sword.right(90)
+                    goku_sword.forward(130)
+                    
+                    #end of handle
+                    goku_sword.pendown()
+                    goku_sword.right(90)
+                    goku_sword.forward(50)
+                    goku_sword.right(90)
+                    goku_sword.forward(50)
+                    goku_sword.right(90)
+                    goku_sword.forward(50)
+                    goku_sword.right(90)
+                    goku_sword.forward(50)
+                    goku_sword.end_fill()
+                    
+                    #right handle
+                    goku_sword.right(180)
+                    goku_sword.forward(50)
+                    goku_sword.left(90)
+                    goku_sword.forward(15)
+                    goku_sword.right(45)
+                    goku_sword.forward(75)
+                    goku_sword.right(90)
+                    goku_sword.forward(50)
+                    goku_sword.left(45)
+                    goku_sword.forward(75)
+                    goku_sword.left(135)
+                    goku_sword.forward(75)
+                    
+                    #right blade
+                    goku_sword.right(90)
+                    goku_sword.forward(200)
+                    goku_sword.left(45)
+                    goku_sword.forward(75)
+                    
+                    #left blade
+                    goku_sword.left(90)
+                    goku_sword.forward(75)
+                    goku_sword.left(45)
+                    goku_sword.forward(200)
+                    
+                    
+                    #left handle
+                    goku_sword.right(90)
+                    goku_sword.forward(75)
+                    goku_sword.left(135)
+                    goku_sword.forward(75)
+                    goku_sword.left(45)
+                    goku_sword.forward(50)
+                    goku_sword.right(90)
+                    goku_sword.forward(75)
+                    
+                    #decoration on end of handle
+                    goku_sword.left(45)
+                    goku_sword.penup()
+                    goku_sword.forward(12)
+                    goku_sword.right(90)
+                    goku_sword.forward(3)
+                    goku_sword.left(90)
+                    goku_sword.pendown()
+                    goku_sword.begin_fill()
+                    goku_sword.fillcolor("#fcc201")
+                    goku_sword.forward(25)
+                    goku_sword.left(90)
+                    goku_sword.forward(25)
+                    goku_sword.left(90)
+                    goku_sword.forward(25)
+                    goku_sword.left(90)
+                    goku_sword.forward(25)
+                    goku_sword.left(90)
+                    goku_sword.left(135)
+                    goku_sword.end_fill()
+                    #left decoration on handle
+                    
+                    goku_sword.penup()
+                    goku_sword.forward(100)
+                    goku_sword.left(90)
+                    goku_sword.forward(10)
+                    goku_sword.pendown()
+                    goku_sword.begin_fill()
+                    goku_sword.fillcolor("red")
+                    goku_sword.forward(45)
+                    goku_sword.right(45)
+                    goku_sword.forward(35)
+                    goku_sword.right(135)
+                    goku_sword.forward(45)
+                    goku_sword.right(45)
+                    goku_sword.forward(35)
+                    goku_sword.end_fill()
+                    
+                    #right decoration on handle
+                    goku_sword.left(45)
+                    goku_sword.penup()
+                    goku_sword.forward(50)
+                    goku_sword.pendown()
+                    goku_sword.begin_fill()
+                    goku_sword.fillcolor("red")
+                    goku_sword.forward(45)
+                    goku_sword.left(45)
+                    goku_sword.forward(35)
+                    goku_sword.left(135)
+                    goku_sword.forward(45)
+                    goku_sword.left(45)
+                    goku_sword.forward(35)
+                    goku_sword.end_fill()
+                    goku_sword.penup()
+                    
+                    #beginning of blade decoration
+                    goku_sword.right(45)
+                    goku_sword.forward(22)
+                    goku_sword.right(90)
+                    
+                    #blade decoration
+                    goku_sword.pendown()
+                    
+                    goku_sword.right(45)
+                    goku_sword.forward(55)
+                    goku_sword.left(45)
+                    goku_sword.forward(195)
+                    goku_sword.left(45)
+                    goku_sword.forward(55)
+                    goku_sword.left(90)
+                    goku_sword.forward(55)
+                    goku_sword.left(45)
+                    goku_sword.forward(195)
+                    goku_sword.left(45)
+                    goku_sword.forward(55)
+                    goku_sword.right(45)
+                    goku_sword.penup()
+                    
+                    #blade decoration 2
+                    goku_sword.right(180)
+                    goku_sword.forward(20)
+                    goku_sword.pendown()
+                    goku_sword.begin_fill()
+                    goku_sword.fillcolor("#fcc201")
+                    goku_sword.right(45)
+                    goku_sword.forward(35)
+                    goku_sword.left(45)
+                    goku_sword.forward(185)
+                    goku_sword.left(45)
+                    goku_sword.forward(35)
+                    goku_sword.left(90)
+                    goku_sword.forward(35)
+                    goku_sword.left(45)
+                    goku_sword.forward(185)
+                    goku_sword.left(45)
+                    goku_sword.forward(35)
+                    goku_sword.end_fill()
+                    goku_sword.penup()
+                    goku_sword.right(45)
+                    
+                    #handle decoration middle
+                    goku_sword.forward(35)
+                    goku_sword.pendown()
+                    goku_sword.begin_fill()
+                    goku_sword.fillcolor("blue")
+                    goku_sword.right(45)
+                    goku_sword.forward(15)
+                    goku_sword.left(45)
+                    goku_sword.forward(35)
+                    goku_sword.left(135)
+                    goku_sword.forward(16)
+                    goku_sword.right(90)
+                    goku_sword.forward(16)
+                    goku_sword.left(135)
+                    goku_sword.forward(35)
+                    goku_sword.left(45)
+                    goku_sword.forward(15)
+                    goku_sword.end_fill()
+                    goku_sword.penup()
+                    goku_sword.hideturtle()
+                    
+                    
+                    #code for writing dragon ball z
+                    def write(message,pos):
+                            x,y=pos
+                            # Define color of the text
+                            turtle.pencolor("yellow")
+                            turtle.penup()
+                            turtle.goto(x,y)
+                            # Defining font style and size
+                            style=('Verdana',30,'bold')
+                            turtle.write(message,font=style)
+                    
+                    write('Dragon',(-330,-200))
+                    
+                    def write(message,pos):
+                            x,y=pos
+                            # Define color of the text
+                            turtle.pencolor("red")
+                            turtle.penup()
+                            turtle.goto(x,y)
+                            # Defining font style and size
+                            style=('Verdana',30,'bold')
+                            turtle.write(message,font=style)
+                    
+                    write('Ball',(-160,-200))
+                    
+                    def write(message,pos):
+                            x,y=pos
+                            # Define color of the text
+                            turtle.pencolor("red")
+                            turtle.penup()
+                            turtle.goto(x,y)
+                            # Defining font style and size
+                            style=('Verdana',40,'bold')
+                            turtle.write(message,font=style)
+                    
+                    write('Z',(-70,-205))
+                    
+                    def write(message,pos):
+                            x,y=pos
+                            # Define color of the text
+                            turtle.pencolor("blue")
+                            turtle.penup()
+                            turtle.goto(x,y)
+                            # Defining font style and size
+                            style=('Verdana',15)
+                            turtle.write(message,font=style)
+                    
+                    write('The Legacy of Goku',(-300,-240))
+                    turtle.hideturtle()
+                    
+                    #code for holding screen 
+                    turtle.main
+            </code>
+        </pre>
+        </section>
+        <section>
+            <h2> <span> Pokemon </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/G53MoxrfsqU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python">  <code>
+                    <h3>Source Code</h3>
+                    import turtle
+
+
+                    def getPosition(x, y):
+                            turtle.setx(x)
+                            turtle.sety(y)
+                            print(x, y)
+                    
+                    class Pikachu:
+                    
+                        def __init__(self):
+                            self.t = turtle.Turtle()
+                            t = self.t
+                            t.pensize(3)
+                            t.speed(9)
+                            t.ondrag(getPosition)
+                    
+                        
+                            
+                        def noTrace_goto(self, x, y):
+                            self.t.penup()
+                            self.t.goto(x, y)
+                            self.t.pendown()
+                    
+                        def leftEye(self, x, y):
+                            self.noTrace_goto(x, y)
+                            t = self.t
+                            t.seth(0)
+                            t.fillcolor('#333333')
+                            t.begin_fill()
+                            t.circle(22)
+                            t.end_fill()
+                    
+                            self.noTrace_goto(x, y+10)
+                            t.fillcolor('#000000')
+                            t.begin_fill()
+                            t.circle(10)
+                            t.end_fill()
+                    
+                            self.noTrace_goto(x+6, y + 22)
+                            t.fillcolor('#ffffff')
+                            t.begin_fill()
+                            t.circle(10)
+                            t.end_fill()
+                    
+                        def rightEye(self, x, y):
+                            self.noTrace_goto(x, y)
+                            t = self.t
+                            t.seth(0)
+                            t.fillcolor('#333333')
+                            t.begin_fill()
+                            t.circle(22)
+                            t.end_fill()
+                    
+                            self.noTrace_goto(x, y+10)
+                            t.fillcolor('#000000')
+                            t.begin_fill()
+                            t.circle(10)
+                            t.end_fill()
+                    
+                            self.noTrace_goto(x-6, y + 22)
+                            t.fillcolor('#ffffff')
+                            t.begin_fill()
+                            t.circle(10)
+                            t.end_fill()
+                    
+                        def mouth(self, x, y):
+                            self.noTrace_goto(x, y)
+                            t = self.t
+                    
+                            t.fillcolor('#88141D')
+                            t.begin_fill()
+                            # 下嘴唇
+                            l1 = []
+                            l2 = []
+                            t.seth(190)
+                            a = 0.7
+                            for i in range(28):
+                                a += 0.1
+                                t.right(3)
+                                t.fd(a)
+                                l1.append(t.position())
+                            
+                            self.noTrace_goto(x, y)
+                            
+                            t.seth(10)
+                            a = 0.7
+                            for i in range(28):
+                                a += 0.1
+                                t.left(3)
+                                t.fd(a)
+                                l2.append(t.position())
+                            
+                            # 上嘴唇
+                            
+                            t.seth(10)
+                            t.circle(50, 15)
+                            t.left(180)
+                            t.circle(-50, 15)
+                            
+                            t.circle(-50, 40)
+                            t.seth(233)
+                            t.circle(-50, 55)
+                            t.left(180)
+                            t.circle(50, 12.1)
+                            t.end_fill()
+                    
+                            # 舌头
+                            self.noTrace_goto(17, 54)
+                            t.fillcolor('#DD716F')
+                            t.begin_fill()
+                            t.seth(145)
+                            t.circle(40, 86)
+                            t.penup()
+                            for pos in reversed(l1[:20]):
+                                t.goto(pos[0], pos[1]+1.5)
+                            for pos in l2[:20]:
+                                t.goto(pos[0], pos[1]+1.5)
+                            t.pendown()
+                            t.end_fill()
+                    
+                            # 鼻子
+                            self.noTrace_goto(-17, 94)
+                            t.seth(8)
+                            t.fd(4)
+                            t.back(8)
+                    
+                        # 红脸颊
+                        def leftCheek(self, x, y):
+                            turtle.tracer(False)
+                            t = self.t
+                            self.noTrace_goto(x, y)
+                            t.seth(300)
+                            t.fillcolor('#DD4D28')
+                            t.begin_fill()
+                            a = 2.3
+                            for i in range(120):
+                                if 0 <= i < 30 or 60 <= i < 90:
+                                    a -= 0.05
+                                    t.lt(3)
+                                    t.fd(a)
+                                else:
+                                    a += 0.05
+                                    t.lt(3)
+                                    t.fd(a)
+                            t.end_fill()
+                            turtle.tracer(True)
+                    
+                        def rightCheek(self, x, y):
+                            t = self.t
+                            turtle.tracer(False)
+                            self.noTrace_goto(x, y)
+                            t.seth(60)
+                            t.fillcolor('#DD4D28')
+                            t.begin_fill()
+                            a = 2.3
+                            for i in range(120):
+                                if 0 <= i < 30 or 60 <= i < 90:
+                                    a -= 0.05
+                                    t.lt(3)
+                                    t.fd(a)
+                                else:
+                                    a += 0.05
+                                    t.lt(3)
+                                    t.fd(a)
+                            t.end_fill()
+                            turtle.tracer(True)
+                    
+                        def colorLeftEar(self, x, y):
+                            t = self.t
+                            self.noTrace_goto(x, y)
+                            t.fillcolor('#000000')
+                            t.begin_fill()
+                            t.seth(330)
+                            t.circle(100, 35)
+                            t.seth(219)
+                            t.circle(-300, 19)
+                            t.seth(110)
+                            t.circle(-30, 50)
+                            t.circle(-300, 10)
+                            t.end_fill()
+                            
+                    
+                        def colorRightEar(self, x, y):
+                            t = self.t
+                            self.noTrace_goto(x, y)
+                            t.fillcolor('#000000')
+                            t.begin_fill()
+                            t.seth(300)
+                            t.circle(-100, 30)
+                            t.seth(35)
+                            t.circle(300, 15)
+                            t.circle(30, 50)
+                            t.seth(190)
+                            t.circle(300, 17)
+                            t.end_fill()
+                        
+                    
+                        def body(self):
+                            t = self.t
+                    
+                            t.fillcolor('#F6D02F')
+                            t.begin_fill()
+                            # 右脸轮廓
+                            t.penup()
+                            t.circle(130, 40)
+                            t.pendown()
+                            t.circle(100, 105)
+                            t.left(180)
+                            t.circle(-100, 5)
+                    
+                            # 右耳朵
+                            t.seth(20)
+                            t.circle(300, 30)
+                            t.circle(30, 50)
+                            t.seth(190)
+                            t.circle(300, 36)
+                    
+                            # 上轮廓
+                            t.seth(150)
+                            t.circle(150, 70)
+                            
+                            # 左耳朵
+                            t.seth(200)
+                            t.circle(300, 40)
+                            t.circle(30, 50)
+                            t.seth(20)
+                            t.circle(300, 35)
+                            #print(t.pos())
+                    
+                            # 左脸轮廓
+                            t.seth(240)
+                            t.circle(105, 95)
+                            t.left(180)
+                            t.circle(-105, 5)
+                    
+                            # 左手
+                            t.seth(210)
+                            t.circle(500, 18)
+                            t.seth(200)
+                            t.fd(10)
+                            t.seth(280)
+                            t.fd(7)
+                            t.seth(210)
+                            t.fd(10)
+                            t.seth(300)
+                            t.circle(10, 80)
+                            t.seth(220)
+                            t.fd(10)
+                            t.seth(300)
+                            t.circle(10, 80)
+                            t.seth(240)
+                            t.fd(12)
+                            t.seth(0)
+                            t.fd(13)
+                            t.seth(240)
+                            t.circle(10, 70)
+                            t.seth(10)
+                            t.circle(10, 70)
+                            t.seth(10)
+                            t.circle(300, 18)
+                    
+                            t.seth(75)
+                            t.circle(500, 8)
+                            t.left(180)
+                            t.circle(-500, 15)
+                            t.seth(250)
+                            t.circle(100, 65)
+                    
+                            # 左脚
+                            t.seth(320)
+                            t.circle(100, 5)
+                            t.left(180)
+                            t.circle(-100, 5)
+                            t.seth(220)
+                            t.circle(200, 20)
+                            t.circle(20, 70)
+                    
+                            t.seth(60)
+                            t.circle(-100, 20)
+                            t.left(180)
+                            t.circle(100, 20)
+                            t.seth(300)
+                            t.circle(10, 70)
+                    
+                            t.seth(60)
+                            t.circle(-100, 20)
+                            t.left(180)
+                            t.circle(100, 20)
+                            t.seth(10)
+                            t.circle(100, 60)
+                    
+                            # 横向
+                            t.seth(180)
+                            t.circle(-100, 10)
+                            t.left(180)
+                            t.circle(100, 10)
+                            t.seth(5)
+                            t.circle(100, 10)
+                            t.circle(-100, 40)
+                            t.circle(100, 35)
+                            t.left(180)
+                            t.circle(-100, 10)
+                    
+                            # 右脚
+                            t.seth(290)
+                            t.circle(100, 55)
+                            t.circle(10, 50)
+                    
+                            t.seth(120)
+                            t.circle(100, 20)
+                            t.left(180)
+                            t.circle(-100, 20)
+                    
+                            t.seth(0)
+                            t.circle(10, 50)
+                    
+                            t.seth(110)
+                            t.circle(100, 20)
+                            t.left(180)
+                            t.circle(-100, 20)
+                    
+                            t.seth(30)
+                            t.circle(20, 50)
+                    
+                            t.seth(100)
+                            t.circle(100, 40)
+                    
+                            # 右侧身体轮廓
+                            t.seth(200)
+                            t.circle(-100, 5)
+                            t.left(180)
+                            t.circle(100, 5)
+                            t.left(30)
+                            t.circle(100, 75)
+                            t.right(15)
+                            t.circle(-300, 21)
+                            t.left(180)
+                            t.circle(300, 3)
+                    
+                            # 右手
+                            t.seth(43)
+                            t.circle(200, 60)
+                            
+                    
+                            t.right(10)
+                            t.fd(10)
+                    
+                            t.circle(5, 160)
+                            t.seth(90)
+                            t.circle(5, 160)
+                            t.seth(90)
+                    
+                            
+                            t.fd(10)
+                            t.seth(90)
+                            t.circle(5, 180)
+                            t.fd(10)
+                    
+                            t.left(180)
+                            t.left(20)
+                            t.fd(10)
+                            t.circle(5, 170)
+                            t.fd(10)
+                            t.seth(240)
+                            t.circle(50, 30)
+                    
+                            
+                            t.end_fill()
+                            self.noTrace_goto(130, 125)
+                            t.seth(-20)
+                            t.fd(5)
+                            t.circle(-5, 160)
+                            t.fd(5)
+                    
+                            # 手指纹
+                            self.noTrace_goto(166, 130)
+                            t.seth(-90)
+                            t.fd(3)
+                            t.circle(-4, 180)
+                            t.fd(3)
+                            t.seth(-90)
+                            t.fd(3)
+                            t.circle(-4, 180)
+                            t.fd(3)
+                    
+                            # 尾巴
+                            self.noTrace_goto(168, 134)
+                            t.fillcolor('#F6D02F')
+                            t.begin_fill()
+                            t.seth(40)
+                            t.fd(200)
+                            t.seth(-80)
+                            t.fd(150)
+                            t.seth(210)
+                            t.fd(150)
+                            t.left(90)
+                            t.fd(100)
+                            t.right(95)
+                            t.fd(100)
+                            t.left(110)
+                            t.fd(70)
+                            t.right(110)
+                            t.fd(80)
+                            t.left(110)
+                            t.fd(30)
+                            t.right(110)
+                            t.fd(32)
+                    
+                            t.right(106)
+                            t.circle(100, 25)
+                            t.right(15)
+                            t.circle(-300, 2)
+                            ##############
+                            #print(t.pos())
+                            t.seth(30)
+                            t.fd(40)
+                            t.left(100)
+                            t.fd(70)
+                            t.right(100)
+                            t.fd(80)
+                            t.left(100)
+                            t.fd(46)
+                            t.seth(66)
+                            t.circle(200, 38)
+                            t.right(10)
+                            t.fd(10)
+                            t.end_fill()
+                    
+                    
+                    
+                            # 尾巴花纹 
+                            t.fillcolor('#923E24')
+                            self.noTrace_goto(126.82, -156.84)
+                            t.begin_fill()
+                            
+                            t.seth(30)
+                            t.fd(40)
+                            t.left(100)
+                            t.fd(40)
+                            t.pencolor('#923e24')
+                            t.seth(-30)
+                            t.fd(30)
+                            t.left(140)
+                            t.fd(20)
+                            t.right(150)
+                            t.fd(20)
+                            t.left(150)
+                            t.fd(20)
+                            t.right(150)
+                            t.fd(20)
+                            t.left(130)
+                            t.fd(18)
+                            t.pencolor('#000000')
+                            t.seth(-45)
+                            t.fd(67)
+                            t.right(110)
+                            t.fd(80)
+                            t.left(110)
+                            t.fd(30)
+                            t.right(110)
+                            t.fd(32)
+                            t.right(106)
+                            t.circle(100, 25)
+                            t.right(15)
+                            t.circle(-300, 2)
+                            t.end_fill()
+                            
+                    
+                            # 帽子、眼睛、嘴巴、脸颊
+                            self.cap(-134.07, 147.81)
+                            self.mouth(-5, 25)
+                            self.leftCheek(-126, 32)
+                            self.rightCheek(107, 63)
+                            self.colorLeftEar(-250, 100)
+                            self.colorRightEar(140, 270)
+                            self.leftEye(-85, 90)
+                            self.rightEye(50, 110)
+                            t.hideturtle()
+                            
+                    
+                    
+                        def cap(self, x, y):
+                            self.noTrace_goto(x, y)
+                            t = self.t
+                            t.fillcolor('#CD0000')
+                            t.begin_fill()
+                            t.seth(200)
+                            t.circle(400, 7)
+                            t.left(180)
+                            t.circle(-400, 30)
+                            t.circle(30, 60)
+                            t.fd(50)
+                            t.circle(30, 45)
+                            t.fd(60)
+                            t.left(5)
+                            t.circle(30, 70)
+                            t.right(20)
+                            t.circle(200, 70)
+                            t.circle(30, 60)
+                            t.fd(70)
+                            # print(t.pos())
+                            t.right(35)
+                            t.fd(50)
+                            t.circle(8, 100)
+                            t.end_fill()
+                            self.noTrace_goto(-168.47, 185.52)
+                            t.seth(36)
+                            t.circle(-270, 54)
+                            t.left(180)
+                            t.circle(270, 27)
+                            t.circle(-80, 98)
+                    
+                            t.fillcolor('#444444')
+                            t.begin_fill()
+                            t.left(180)
+                            t.circle(80, 197)
+                            t.left(58)
+                            t.circle(200, 45)
+                            t.end_fill()
+                    
+                            self.noTrace_goto(-58, 270)
+                            t.pencolor('#228B22')
+                            t.dot(35)
+                    
+                            self.noTrace_goto(-30, 280)
+                            t.fillcolor('#228B22')
+                            t.begin_fill()
+                            t.seth(100)
+                            t.circle(30, 180)
+                            t.seth(190)
+                            t.fd(15)
+                            t.seth(100)
+                            t.circle(-45, 180)
+                            t.right(90)
+                            t.fd(15)
+                            t.end_fill()
+                            t.pencolor('#000000')
+                    
+                    
+                    
+                    
+                        def start(self):
+                            self.body()
+                    
+                    
+                    
+                    def main():
+                        print('Painting the Pikachu... ')
+                        turtle.screensize(800, 600)
+                        turtle.title('Pikachu')
+                        pikachu = Pikachu()
+                        pikachu.start()
+                        turtle.mainloop()
+                        
+                    
+                    if __name__ == '__main__':
+                        main()
+                    
+            </code>
+        </pre>
+        </section>
+        <section>
+            <h2> <span> Mickey Mouse </span> </h2>
+            <iframe width="1300" height="720" src="https://www.youtube.com/embed/NarNCB-umjw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <pre class="brush: python">  <code>
+                    <h3>Source Code</h3>
+                    #draw mickey mouse using turtle
+
+                    #importing necessary modules
+                    from tkinter import N
+                    import turtle
+                    import colorsys
+                    
+                    #Initialize a variable for turtle
+                    micky_mouse = turtle.Turtle()
+                    micky_mouse.speed(0)
+                    
+                    #Create a turtle screen
+                    screen= turtle.Screen()
+                    #Define height and width of screen
+                    screen.setup(1200,600)
+                    #Define Background color of screen
+                    screen.bgcolor('#ffdbac')
+                    screen.update()
+                    
+                    
+                    # Define title of program
+                    turtle.title("Copy Assignment Turtle")
+                    
+                    
+                    #Code for drawing head of mickey mouse
+                    
+                    #initializing starting point of head
+                    micky_mouse.goto(0,-150)
+                    #filling color in head
+                    micky_mouse.begin_fill()
+                    #setting color of head
+                    micky_mouse.color('black')
+                    #drawing head
+                    micky_mouse.circle(150)
+                    #ending fill
+                    micky_mouse.end_fill()
+                    
+                    
+                    #Code for drawing ears of mickey mouse
+                    
+                    #left ear
+                    #initializing starting point of left ear
+                    micky_mouse.goto(-120,100)
+                    #filling color in left ear
+                    micky_mouse.begin_fill()
+                    #setting color of left ear
+                    micky_mouse.color('black')
+                    #drawing left ear
+                    micky_mouse.circle(90)
+                    #ending fill
+                    micky_mouse.end_fill()
+                    
+                    #right ear
+                    #initializing starting point of right ear
+                    micky_mouse.goto(120,100)
+                    #filling color in right ear
+                    micky_mouse.begin_fill()
+                    #setting color of right ear
+                    micky_mouse.color('black')
+                    #drawing right ear
+                    micky_mouse.circle(90)
+                    #ending fill
+                    micky_mouse.end_fill()
+                    
+                    
+                    
+                    #Code for drawing face of mickey mouse
+                    
+                    #initializing starting point of face dip
+                    micky_mouse.goto(40,-190)
+                    #filling color in face dip
+                    micky_mouse.begin_fill()
+                    #setting color of face dip
+                    micky_mouse.color('#ffdbac')
+                    #drawing face dip
+                    micky_mouse.circle(120)
+                    #ending fill
+                    micky_mouse.end_fill()
+                    
+                    micky_mouse.goto(-40,-190)
+                    micky_mouse.begin_fill()
+                    micky_mouse.color('#ffdbac')
+                    micky_mouse.circle(120)
+                    micky_mouse.end_fill()
+                    
+                    #Code for face outline
+                    
+                    #initializing starting point of face outline
+                    micky_mouse.goto(0,-150)
+                    #setting color of face outline
+                    micky_mouse.color('black')
+                    #drawing face outline
+                    micky_mouse.circle(150)
+                    
+                    
+                    
+                    #Code for drawing eyes of mickey mouse
+                    
+                    #initializing starting point of left eye
+                    micky_mouse.penup()
+                    micky_mouse.goto(-50,-25)
+                    micky_mouse.pendown()
+                    
+                    def draw_left_eye(rad):
+                        for i in range(4):
+                         
+                        # two arcs
+                            #filling color in eyes
+                            micky_mouse.begin_fill()
+                            #setting color of eyes
+                            micky_mouse.color('white')
+                            #DRAW eyes
+                            micky_mouse.circle(rad,90)
+                            micky_mouse.circle(rad//4,90)
+                            #ending fill                              
+                            micky_mouse.end_fill()
+                    
+                    # Main section
+                    # tilt the shape to negative 45
+                    micky_mouse.seth(45)
+                    draw_left_eye(40)
+                    
+                    
+                    #Code  of left eye ball
+                    micky_mouse.penup()
+                    micky_mouse.goto(-50,-20)
+                    micky_mouse.pendown()
+                    #filling color in left eye
+                    micky_mouse.begin_fill()
+                    #setting color of left eye
+                    micky_mouse.color('black')
+                    #drawing left eye
+                    micky_mouse.circle(8)
+                    #ending fill
+                    micky_mouse.end_fill()
+                    
+                    #initializing starting point of right eye
+                    
+                    micky_mouse.penup()
+                    micky_mouse.goto(55,-25)
+                    micky_mouse.pendown()
+                    
+                    def draw_eye(rad):
+                        for i in range(4):
+                         
+                        # two arcs
+                            #filling color in eyes
+                            micky_mouse.begin_fill()
+                            #setting color of eyes
+                            micky_mouse.color('white')
+                            #DRAW eyes
+                            micky_mouse.circle(rad,90)
+                            micky_mouse.circle(rad//4,90)
+                            #ending fill                              
+                            micky_mouse.end_fill()
+                    
+                    # Main section
+                    # tilt the shape to negative 45
+                    micky_mouse.seth(45)
+                    draw_eye(40)
+                    
+                    # code for right eye ball
+                    micky_mouse.penup()
+                    micky_mouse.goto(50,-20)
+                    micky_mouse.pendown()
+                    #filling color in right eye
+                    micky_mouse.begin_fill()
+                    #setting color of right eye
+                    micky_mouse.color('black')
+                    #drawing right eye
+                    micky_mouse.circle(8)
+                    #ending fill
+                    micky_mouse.end_fill()
+                    
+                    #Code for drawing outline of eyes of mickey mouse
+                    #initializing starting point of right eye outline
+                    micky_mouse.penup()
+                    micky_mouse.goto(55,-25)
+                    micky_mouse.pendown()
+                    
+                    def draw_reye_outline(rad):
+                        for i in range(4):
+                         
+                        # two arcs
+                            micky_mouse.circle(rad,90)
+                            micky_mouse.circle(rad//4,90)
+                            
+                    # Main section
+                    # tilt the shape to negative 45
+                    micky_mouse.seth(45)
+                    draw_reye_outline(40)
+                    
+                    #initializing starting point of left eye outline
+                    micky_mouse.penup()
+                    micky_mouse.goto(-50,-25)
+                    micky_mouse.pendown()
+                    
+                    def draw_leye_outline(rad):
+                        for i in range(4):
+                         
+                        # two arcs
+                            micky_mouse.circle(rad,90)
+                            micky_mouse.circle(rad//4,90)
+                            
+                    # Main section
+                    # tilt the shape to negative 45
+                    micky_mouse.seth(45)
+                    draw_leye_outline(40)
+                    
+                    
+                    
+                    #Code for drawing nose of mickey mouse
+                    
+                    #initializing starting point of nose
+                    micky_mouse.penup()
+                    micky_mouse.goto(-20,-50)
+                    micky_mouse.pendown()
+                    def draw(rad):
+                        for i in range(3):
+                         
+                        # two arcs
+                            #filling color in nose
+                            micky_mouse.begin_fill()
+                            #setting color of nose
+                            micky_mouse.color('black')
+                            #DRAW NOSE
+                            micky_mouse.circle(rad,90)
+                            micky_mouse.circle(rad//3,90)
+                            #ending fill                              
+                            micky_mouse.end_fill()
+                    
+                    # Main section
+                    # tilt the shape to negative 45
+                    micky_mouse.seth(-45)
+                    draw(25)
+                    
+                    #speed of turtle
+                    micky_mouse.speed(3)
+                    
+                    
+                    #Code for drawing lips of mickey mouse
+                    
+                    #initializing starting point of lips
+                    micky_mouse.speed(0)
+                    micky_mouse.penup()
+                    micky_mouse.goto(-48,-78)
+                    micky_mouse.pendown()
+                    #direction of turtle
+                    micky_mouse.right(90)
+                    #setting heading of turtle
+                    micky_mouse.setheading(-50)
+                    #drawing lips
+                    for x in range (110):
+                      micky_mouse.forward(1)
+                      micky_mouse.left(1)
+                    # micky_mouse.left(110)
+                    # micky_mouse.forward(110)
+                    # micky_mouse.end_fill()
+                    micky_mouse.speed(0)
+                    
+                    #Code for drawing eyebrows of mickey mouse
+                    
+                    
+                    micky_mouse.setheading(-155)
+                    #setting color of left eyebrow
+                    micky_mouse.color('black')
+                    #intialze pen thickness
+                    micky_mouse.pensize(2)
+                    micky_mouse.penup()
+                    #initializing starting point of left eyebrow
+                    micky_mouse.goto(-40,-70)
+                    micky_mouse.pendown()
+                    #drawing left eyebrow
+                    micky_mouse.circle(30,40)
+                    #hide turtle
+                    micky_mouse.hideturtle()
+                    
+                    
+                    #code for drawing right eyebrow
+                    micky_mouse.setheading(-245)
+                    #setting color of right eyebrow
+                    micky_mouse.color('black')
+                    #intialze pen thickness
+                    micky_mouse.pensize(2)
+                    micky_mouse.penup()
+                    #initializing starting point of right eyebrow
+                    micky_mouse.goto(50,-80)
+                    micky_mouse.pendown()
+                    #drawing right eyebrow
+                    micky_mouse.circle(30,40)
+                    #hide turtle
+                    micky_mouse.hideturtle()
+                    
+                    #Code for drawing tongue of mickey mouse
+                    micky_mouse.pensize(1)
+                    micky_mouse.penup()
+                    micky_mouse.goto(-33,-92)
+                    micky_mouse.pendown()
+                    #direction of turtle
+                    micky_mouse.right(90)
+                    #setting heading of turtle
+                    micky_mouse.setheading(-45)
+                    #drawing lips
+                    micky_mouse.forward(20)
+                    micky_mouse.circle(25,95)
+                    micky_mouse.forward(20)
+                    
+                    #Code for background pattern
+                    
+                    #Code for first pattern
+                    h=0
+                    n=50
+                    micky_mouse.pensize(3)
+                    for i in range (50):
+                        c = colorsys.hsv_to_rgb(h, 1.0, 0.8)
+                        h+=1/n 
+                        micky_mouse.penup()
+                        #initializing starting point of background pattern
+                        micky_mouse.goto(500,200)
+                        micky_mouse.pendown()
+                        micky_mouse.hideturtle()
+                        #setting color of background pattern
+                        micky_mouse.pencolor(c)
+                        #drawing background pattern
+                        micky_mouse.circle(i,90)
+                        #moving turtle in forward direction
+                        micky_mouse.forward(i)
+                        #moving turtle in right direction
+                        micky_mouse.right(270)
+                        micky_mouse.circle(i,270)
+                        micky_mouse.forward(i)
+                        micky_mouse.right(180)
+                        micky_mouse.speed(0)     
+                    
+                    #Code for second pattern
+                    for i in range (50):
+                        c = colorsys.hsv_to_rgb(h, 1.0, 0.8)
+                        h+=1/n 
+                        micky_mouse.penup()
+                        micky_mouse.goto(-500,200)
+                        micky_mouse.pendown()
+                        micky_mouse.hideturtle()
+                        micky_mouse.pencolor(c)
+                        micky_mouse.circle(i,90)
+                        micky_mouse.forward(i)
+                        micky_mouse.right(270)
+                        micky_mouse.circle(i,270)
+                        micky_mouse.forward(i)
+                        micky_mouse.right(180)
+                        micky_mouse.speed(0)
+                         
+                    #Code for third pattern
+                    for i in range (50):
+                        c = colorsys.hsv_to_rgb(h, 1.0, 0.8)
+                        h+=1/n 
+                        micky_mouse.penup()
+                        micky_mouse.goto(500,-200)
+                        micky_mouse.pendown()
+                        micky_mouse.hideturtle()
+                        micky_mouse.pencolor(c)
+                        micky_mouse.circle(i,90)
+                        micky_mouse.forward(i)
+                        micky_mouse.right(270)
+                        micky_mouse.circle(i,270)
+                        micky_mouse.forward(i)
+                        micky_mouse.right(180)
+                        micky_mouse.speed(0)
+                    
+                    #Code for fourth pattern
+                    for i in range (50):
+                        c = colorsys.hsv_to_rgb(h, 1.0, 0.8)
+                        h+=1/n 
+                        micky_mouse.penup()
+                        micky_mouse.goto(-500,-200)
+                        micky_mouse.pendown()
+                        micky_mouse.hideturtle()
+                        micky_mouse.pencolor(c)
+                        micky_mouse.circle(i,90)
+                        micky_mouse.forward(i)
+                        micky_mouse.right(270)
+                        micky_mouse.circle(i,270)
+                        micky_mouse.forward(i)
+                        micky_mouse.right(180)
+                        micky_mouse.speed(0)
+                    turtle.done()    
+                    
+                    #code for holding the output screen
+                    turtle.main
+            </code>
+        </pre>
+        </section>
+    </main>
+
+    <div class="callout ">...</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js " integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN " crossorigin="anonymous "></script>
+
+
+    <div class="callout ">...</div>
+    <div class="b-example-divider"></div>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Company, Inc</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+            </ul>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+</html>2

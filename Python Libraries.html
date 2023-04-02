@@ -11,9 +11,26 @@
     <title> Libraries</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="PyLogo.png" sizes="128x555" />
     <link rel="stylesheet" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<style>
+
+<style type="text/css" media="screen">
+    code {
+        font-size: 120%;
+    }
+    
+    pre code {
+        background-color: #eee;
+        border: 1px solid #999;
+        display: block;
+        padding: 10px;
+        line-height: 140%;
+        margin: 250px;
+        width: 750px;
+    }
+    
     .form-control-dark {
         border-color: var(--bs-gray);
     }
@@ -31,8 +48,20 @@
         outline: 0;
     }
     
+    * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+        font-family: "Josefin Sans", sans-serif;
+    }
+    
     body {
-        background-color: aqua;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Backs.jpg);
+        width: 100%;
+        height: 100vh;
+        animation: changeBg 5s linear infinite;
+        display: grid;
+        background-color: rebeccapurple;
     }
     
     h1 {
@@ -50,35 +79,37 @@
     <header>
         <div class="px-3 py-2 text-bg-dark">
             <div class="container">
+
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                    <a href="Index.html" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/>Python Libraries</svg>
+                        <span class="logo navLogo" style="size: 50px;">Python Libraries </span>
                     </a>
 
-                    <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                    <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-bigger">
                         <li>
-                            <a href="#" class="nav-link text-secondary">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg> Home
+                            <a href="Index.html" class="nav-link text-secondary">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="index.html"/></svg> Home
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg> Dashboard
+                            <a href="Designs.html" class="nav-link text-white">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="Designs.html"/></svg> Designs
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg> Orders
+                            <a href="Animes.html" class="nav-link text-white">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="Animes.html"/></svg> Animes
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>Purchase
+                            <a href="Project.html" class="nav-link text-white">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="Projects.html"/></svg>Projects
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>Refrell
+                            <a href="Sketches.html" class="nav-link text-white">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="Sketches.py"/></svg>SketchPY
                             </a>
                         </li>
                     </ul>
@@ -92,8 +123,9 @@
                 </form>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-light text-dark me-2">Login</button>
-                    <button type="button" class="btn btn-primary">Sign-up</button>
+                    <a button type="button" class="btn btn-light text-dark me-2" href="Login.html">Login</button>
+                        </a>
+                    <a button type="button" class="btn btn-primary" href="Login.html">Sign-up</button></a>
                 </div>
             </div>
         </div>
@@ -101,76 +133,100 @@
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <h1 href="python libraries.txt">Python Libraries</h1>
-    <h2>python libraries </h2>
+    <div class="col ">
+        <div class="card ">
+            <a href="Libraries.html"><img src="Libraries.webp" class="card-img-top " alt=" ... "> </a>
 
-    <h2>python --version</h2>
+            <div class="card-body ">
+                <h5 class="card-title ">Libraries</h5>
+                <p class="card-text ">Note The Python Libraries You Will Use in Python Turtle Graphics, SketchY, Machine Learning, Artificial Intelligence, Game Development, Web Development, Image Processing and Many More</p>
+            </div>
+        </div>
+    </div>
 
-    <h2>pip --version</h2>
-
-    <h2> py -m pip install numpy</h2>
-    <h2> py -m pip install pygame</h2>
-    <h2> py -m pip install pandas</h2>
-    <h2> py -m pip install matplotlib</h2>
-    <h2> py -m pip install seaborn</h2>
-    <h2> py -m pip install Scipy</h2>
-    <h2> py -m pip install Flask</h2>
-    <h2> py -m pip install keras</h2>
-    <h2> py -m pip install scikit-learn</h2>
-    <h2>py -m pip install livy</h2>
-    <h2>py -m pip install theano</h2>
-    <h2>py -m pip install beautifulsoup</h2>
-    <h2>py -m pip install selenium</h2>
-    <h2> py -m pip install nltk</h2>
-    <h2>py -m pip install Pillow</h2>
-    <h2>py -m pip install Scrapy</h2>
-    <h2> py -m pip install kivyMD</h2>
-    <h2>py -m pip install Plotly</h2>
-
-
-    <h2> pip install pyglet</h2>
-    <h2>pip install pytest</h2>
-    <h2>pip install PyAutoGUI</h2>
-    <h2> pip install TextBlob</h2>
-    <h2> pip install vocab</h2>
-    <h2>pip install bokeh</h2>
-    <h2> pip install scikit-image</h2>
-    <h2> pip install simpleCV</h2>
-    <h2>pip install ramp</h2>
-    <h2> pip install dash</h2>
-    <h2>pip install mpmath</h2>
-    <h2> pip install SymPy</h2>
-    <h2> pip install Chainer</h2>
-    <h2> pip install statsmodels</h2>
-    <h2> pip install xgboost</h2>
-    <h2> pip install pydot</h2>
-    <h2> pip install pyod</h2>
-    <h2> pip install genism</h2>
-    <h2> pip install Turtle</h2>
-    <h2> pip install behave</h2>
-    <h2> pip install biopython</h2>
-    <h2>pip install PeeWee</h2>
-    <h2>pip install PyQT6</h2>
-    <h2>pip install Anaconda</h2>
-    <h2>pip install fastapi</h2>
-    <h2>pip install opencv</h2>
-    <h2> pip install spacy</h2>
-    <h2> pip install imbalancedlearn</h2>
-    <h2> pip install pytorch</h2>
-    <h2>pip install nlp</h2>
-    <h2>pip install Flask Fast API</h2>
-    <h2> pip install streamlit</h2>
-    <h2> pip install tensorflow</h2>
-    <h2>pip install spyder</h2>
-    <h2> pip install calender</h2>
-    <h2> pip install sketch</h2>
-    <h2>pip install pymatting</h2>
-    <h2> pip install pywal</h2>
-    <h2> pip install pyvips</h2>
-    <h2> pip install pygal</h2>
-    <h2> pip install imageai</h2>
+    <section>
+        <h1>Python Libraries</h1>
+        <pre class="brush: python"> <code>
+ 
+    <!-- <pre class="brush: python"> -->
+        #Some Major Use Libraries
+        py -m pip install numpy
+        py -m pip install pygame
+        py -m pip install pandas
+        py -m pip install matplotlib
+        py -m pip install seaborn
+        py -m pip install Scipy
+        py -m pip install Flask
+        py -m pip install keras
+        py -m pip install scikit-learn
+        py -m pip install livy
+        py -m pip install theano
+        py -m pip install beautifulsoup
+        py -m pip install selenium
+        py -m pip install nltk
+        py -m pip install Pillow
+        py -m pip install Scrapy
+        py -m pip install kivyMD
+        py -m pip install Plotly
+        
+        
+        #Other Libraries for Deep Python
+        pip install pyglet
+        pip install pygame 
+        pip install tenserflow
+        pip install pytest
+        pip install PyAutoGUI
+        pip install TextBlob
+        pip install vocab
+        pip install bokeh
+        pip install scikit-image
+        pip install simpleCV
+        pip install ramp
+        pip install dash
+        pip install mpmath
+        pip install SymPy
+        pip install Chainer
+        pip install statsmodels
+        pip install xgboost
+        pip install pydot
+        pip install pyod
+        pip install genism
+        pip install Turtle
+        pip install behave
+        pip install biopython
+        pip install PeeWee
+        pip install PyQT6
+        pip install Anaconda
+        pip install fastapi
+        pip install opencv
+        pip install spacy
+        pip install imbalancedlearn
+        pip install pytorch
+        pip install nlp
+        pip install Flask Fast API
+        pip install streamlit
+        pip install tensorflow
+        pip install spyder
+        pip install calender
+        pip install sketch
+        pip install pymatting
+        pip install pywal
+        pip install pyvips
+        pip install pygal
+        pip install imageai
+        pip install face_recognition
+    </code> </pre>
+    </section>
 
     <script src="" async defer></script>
+    <!-- 
+    <section>
+        <h2> <span> Lord Shiva </span> </h2>
+        <iframe width="1300" height="720" src="https://www.youtube.com/embed/cerYie3yzpE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <h1>Source Code</h1>
+        <pre class="brush: python"> <code>
+        </code> </pre>
+    </section> -->
 </body>
 
 </html>
